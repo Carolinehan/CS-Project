@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="6e5094b6-2877-4a94-8a46-411d1c964420" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../RiCNN_demo/.idea/RiCNN_demo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../RiCNN_demo/.idea/RiCNN_demo.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RiCNN_demo/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../RiCNN_demo/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/P4CNN.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/P4CNN.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1VASqkmGqOO033mhzcIh2Q82oYb" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../TensorFlow-Book/ch09_cnn" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="P4CNN" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="gcnn_experiments" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/models" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/models/P4CNN.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.P4CNN" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6e5094b6-2877-4a94-8a46-411d1c964420" name="Default Changelist" comment="" />
+      <created>1576694598101</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1576694598101</updated>
+      <workItem from="1576694604361" duration="1519000" />
+      <workItem from="1576697086035" duration="17084000" />
+      <workItem from="1576837246911" duration="2269000" />
+      <workItem from="1576849543723" duration="334000" />
+      <workItem from="1576849978904" duration="253000" />
+      <workItem from="1576850246902" duration="72000" />
+      <workItem from="1576854534390" duration="12006000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1540" height="466" key="DebuggerActiveHint" timestamp="1577124594885">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1540" height="466" key="DebuggerActiveHint/67.27.1853.1053@67.27.1853.1053" timestamp="1577124594885" />
+    <state x="771" y="310" width="424" height="484" key="FileChooserDialogImpl" timestamp="1577126026582">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="771" y="310" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1577126026582" />
+    <state width="1807" height="344" key="GridCell.Tab.0.bottom" timestamp="1577128673335">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1807" height="344" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1577128673335" />
+    <state width="1807" height="344" key="GridCell.Tab.0.center" timestamp="1577128673335">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1807" height="344" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1577128673335" />
+    <state width="1807" height="344" key="GridCell.Tab.0.left" timestamp="1577128673335">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1807" height="344" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1577128673335" />
+    <state width="1807" height="344" key="GridCell.Tab.0.right" timestamp="1577128673335">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1807" height="344" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1577128673335" />
+    <state width="1807" height="344" key="GridCell.Tab.1.bottom" timestamp="1577128673287">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1807" height="344" key="GridCell.Tab.1.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1577128673287" />
+    <state width="1807" height="344" key="GridCell.Tab.1.center" timestamp="1577128673287">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1807" height="344" key="GridCell.Tab.1.center/67.27.1853.1053@67.27.1853.1053" timestamp="1577128673287" />
+    <state width="1807" height="344" key="GridCell.Tab.1.left" timestamp="1577128673287">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1807" height="344" key="GridCell.Tab.1.left/67.27.1853.1053@67.27.1853.1053" timestamp="1577128673287" />
+    <state width="1807" height="344" key="GridCell.Tab.1.right" timestamp="1577128673287">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1807" height="344" key="GridCell.Tab.1.right/67.27.1853.1053@67.27.1853.1053" timestamp="1577128673287" />
+    <state x="482" y="187" key="SettingsEditor" timestamp="1576696480647">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="482" y="187" key="SettingsEditor/67.27.1853.1053@67.27.1853.1053" timestamp="1576696480647" />
+    <state x="1066" y="360" key="com.intellij.ide.util.TipDialog" timestamp="1576849103878">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="1066" y="360" key="com.intellij.ide.util.TipDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1576849103878" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/gcnn_experiments$P4CNN.coverage" NAME="P4CNN Coverage Results" MODIFIED="1577128673270" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/models" />
+  </component>
+</project>
