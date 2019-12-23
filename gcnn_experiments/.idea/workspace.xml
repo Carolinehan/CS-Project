@@ -34,7 +34,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../TensorFlow-Book/ch09_cnn" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -100,6 +100,7 @@
       <workItem from="1576849978904" duration="253000" />
       <workItem from="1576850246902" duration="72000" />
       <workItem from="1576854534390" duration="12006000" />
+      <workItem from="1577129481046" duration="13000" />
     </task>
     <servers />
   </component>

@@ -103,6 +103,10 @@ celerybeat.pid
 *.npz
 *.tar.gz
 *.zip
+*.jpg
+*.meta
+OralCancer_DataSet3/
+cifar-10-python/
 # Environments
 .env
 .venv

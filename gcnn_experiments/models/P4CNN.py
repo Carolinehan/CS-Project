@@ -109,7 +109,7 @@ batch_size = 100
 y_size = 10
 epochs=100
 
-def get_acc(data, labels, x, y, accuracy):
+def get_acc(data, labels, x, y, accuracy, type):
     val_step=0
     val_acc=0
     for i in range(0, len(data), batch_size):
@@ -122,7 +122,7 @@ def get_acc(data, labels, x, y, accuracy):
         val_step += 1
         val_acc += train_accuracy
     acc = val_acc / val_step
-    print("Validation accuracy %g" % (acc * 100))
+    print("%s accuracy %g" % (type, acc * 100))
 
 def train():
     train_data, train_labels, val_data, val_labels, test_data, test_labels = get_data()
@@ -154,7 +154,7 @@ def train():
                 train_accuracy = accuracy.eval(feed_dict=feed_dict)
                 print("Step %d, training batch accuracy %g  loss %f" % (i,  train_accuracy * 100, loss_percent))
 
-            get_acc(val_data, val_labels, x, y, accuracy)
-    get_acc(test_data, test_labels, x, y, accuracy)
+            get_acc(val_data, val_labels, x, y, accuracy, 'validation')
+    get_acc(test_data, test_labels, x, y, accuracy, 'test')
 
 train()
