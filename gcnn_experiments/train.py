@@ -1,3 +1,4 @@
+import argparse
 import os
 import numpy as np
 import tensorflow as tf
@@ -9,6 +10,10 @@ VALID='VALID'
 channels = 10
 best_model='best_model'
 results_fold='results'
+x_size = 28
+x_depth = 1
+batch_size = 100
+y_size = 10
 
 def generate_p4z2layer(layer_order, previous_layer, iamge_channel, kernel_size=3):
     gconv_indices, gconv_shape_info, w_shape = gconv2d_util(
@@ -52,7 +57,6 @@ def get_model(x, iamge_channel):
     return l7
 
 
-datadir ='../mnist-rot'
 trainfn='train.npz'
 valfn='valid.npz'
 testfn='test.npz'
@@ -69,7 +73,7 @@ def preprocess_mnist_data(train_data, test_data, train_labels, test_labels):
     test_labels = test_labels.astype(np.int32)
 
     return train_data, test_data, train_labels, test_labels
-def save_results(train_acc, train_loss, val_acc, val_loss):
+def save_results(train_acc, train_loss, val_acc, val_loss, datadir):
     # if args.restart_from is None:
     result_dir =datadir + '/' + time.strftime('r%Y_%m_%d_%H_%M_%S')
     if not os.path.exists(result_dir):
@@ -92,29 +96,26 @@ def plot(epochs, train_acc, val_acc):
     plt.legend()
     plt.show()
 
-def read_data(file_name):
+def read_data(file_name, datadir):
     set = np.load(os.path.join(datadir, file_name))
     data = set['data']
     data = np.reshape(data, (-1, x_size, x_size, x_depth))
     labels = set['labels']
     return data, labels
 
-def get_data():
-    train_data, train_labels = read_data(trainfn)
-    val_data, val_labels = read_data(valfn)
+def get_data(datadir):
+    train_data, train_labels = read_data(trainfn, datadir)
+    val_data, val_labels = read_data(valfn, datadir)
     train_data, val_data, train_labels, val_labels = preprocess_mnist_data(
         train_data, val_data, train_labels, val_labels)
 
-    test_data, test_labels = read_data(testfn)
+    test_data, test_labels = read_data(testfn, datadir)
     _, test_data, _, test_labels = preprocess_mnist_data(
         train_data, test_data, train_labels, test_labels)
 
     return train_data,train_labels, val_data, val_labels, test_data, test_labels
 
-x_size = 28
-x_depth = 1
-batch_size = 100
-y_size = 10
+
 
 def get_acc(data, labels, x, y, accuracy, loss, train_op, type, train=False):
     val_step=0
@@ -142,10 +143,9 @@ def get_acc(data, labels, x, y, accuracy, loss, train_op, type, train=False):
     print("%s accuracy %g, loss %s" % (type, acc * 100, loss_value))
     return acc, loss_value
 
-def train(epochs):
-    train_data, train_labels, val_data, val_labels, test_data, test_labels = get_data()
+def train(epochs, datadir, model):
+    train_data, train_labels, val_data, val_labels, test_data, test_labels = get_data(datadir)
     with tf.Graph().as_default():
-
         x = tf.placeholder(tf.float32, shape=[None, x_size, x_size, x_depth], name='input')
         y = tf.placeholder(dtype=tf.int64, shape=[None])
         logits = get_model(x, x_depth)
@@ -153,7 +153,6 @@ def train(epochs):
         train_op = tf.train.AdamOptimizer(learning_rate=0.001).minimize(loss)
         correct_prediction = tf.equal(y, tf.argmax(logits, 1))
         accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
-
         saver = tf.train.Saver()
         best_acc = 0
         sess = tf.InteractiveSession()
@@ -183,4 +182,12 @@ def restore_model():
         tf.saved_model.loader.load(sess, ['serve'], best_model)
         sess.run('output:0', feed_dict={})
 
-train(100)
+if __name__ == '__main__':
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--datadir', type=str, default='mnist-rot')
+    parser.add_argument('--model', type=str, default='GCNN')
+    parser.add_argument('--epochs', type=int, default=100)
+
+    args = vars(parser.parse_args())
+    train(vars(args))

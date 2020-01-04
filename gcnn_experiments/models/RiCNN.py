@@ -1,61 +1,73 @@
 import os
 import numpy as np
 import tensorflow as tf
-from groupy.gconv.tensorflow_gconv.splitgconv2d import gconv2d, gconv2d_util
 import time
 import matplotlib.pyplot as plt
+import ricnn
 
 VALID='VALID'
 channels = 10
 best_model='best_model'
 results_fold='results'
-
-def generate_p4z2layer(layer_order, previous_layer, iamge_channel, kernel_size=3):
-    gconv_indices, gconv_shape_info, w_shape = gconv2d_util(
-        h_input='Z2', h_output='C4', in_channels=iamge_channel, out_channels=channels, ksize=3)
-    w = tf.get_variable('weights-conv' + str(layer_order), w_shape)
-    l = gconv2d(input=previous_layer, filter=w, strides=[1, 1, 1, 1], padding=VALID,
-                 gconv_indices=gconv_indices, gconv_shape_info=gconv_shape_info, use_cudnn_on_gpu=True)
-    l = tf.layers.batch_normalization(l)
-    l = tf.nn.relu(l)
-    return l
-
-def generate_p4p4layer(layer_order, previous_layer, kernel_size=3):
-    gconv_indices, gconv_shape_info, w_shape = gconv2d_util(
-        h_input='C4', h_output='C4', in_channels=channels, out_channels=channels, ksize=kernel_size)
-    w = tf.get_variable('weights-conv' + str(layer_order), w_shape)
-    l = gconv2d(input=previous_layer, filter=w, strides=[1, 1, 1, 1], padding=VALID,
-                 gconv_indices=gconv_indices, gconv_shape_info=gconv_shape_info, use_cudnn_on_gpu=True)
-    return l
-
-def generate_p4p4layer_n_a(layer_order, previous_layer, kernel_size=3):
-    gconv_indices, gconv_shape_info, w_shape = gconv2d_util(
-        h_input='C4', h_output='C4', in_channels=channels, out_channels=channels, ksize=kernel_size)
-    w = tf.get_variable('weights-conv' + str(layer_order), w_shape)
-    l = gconv2d(input=previous_layer, filter=w, strides=[1, 1, 1, 1], padding=VALID,
-                 gconv_indices=gconv_indices, gconv_shape_info=gconv_shape_info, use_cudnn_on_gpu=True)
-    l = tf.layers.batch_normalization(l, training=True)
-    l = tf.nn.relu(l)
-    return l
-
-def get_model(x, iamge_channel):
-    l1=generate_p4z2layer(1, x, iamge_channel)
-    l2 =generate_p4p4layer_n_a(2, l1)
-    l2= tf.nn.max_pool(l2,[1,2, 2,1], [1,2, 2,1], padding=VALID)
-    l3 = generate_p4p4layer_n_a(3,l2)
-    l4 = generate_p4p4layer_n_a(4, l3)
-    l5 = generate_p4p4layer_n_a(5, l4)
-    l6 = generate_p4p4layer_n_a(6, l5)
-    l7 = generate_p4p4layer_n_a(7, l6, kernel_size=4 )
-    images_flat = tf.contrib.layers.flatten(l7)
-    l7 = tf.contrib.layers.fully_connected(images_flat, y_size, tf.nn.softmax)
-    return l7
-
-
 datadir ='../mnist-rot'
 trainfn='train.npz'
 valfn='valid.npz'
 testfn='test.npz'
+
+x_size = 28
+x_depth = 1
+batch_size = 100
+y_size = 10
+filter_size = 3
+n_filters = 7
+rotations = 8
+stride = 1
+pool_stride = 2
+def r_e_layer(layer_order, previous_layer,output_size,n_filters_previous_layer, n_rotations=rotations):
+    weights = tf.get_variable('weights-conv'+str(layer_order), [filter_size, filter_size,
+                                                n_filters_previous_layer, n_filters])
+    biases = tf.get_variable('biases-conv'+str(layer_order), [n_filters])
+    output = ricnn.rotation_equivariant_conv2d(
+        previous_layer, weights,
+        [batch_size, output_size, output_size, n_filters_previous_layer],
+        [filter_size, filter_size, n_filters_previous_layer, n_filters],
+        n_rotations, stride=stride) + biases
+    output = tf.layers.batch_normalization(output)
+    output = tf.nn.relu(output)
+    output_size = ricnn.calculate_reconv_output_size(
+        output_size, filter_size, pool_stride=stride)
+    n_filters_previous_layer = n_filters
+
+    return output, output_size, n_filters_previous_layer
+
+def dft_layer(previous_layer,output_size,n_filters_previous_layer, n_rotations=rotations):
+    filter_size = output_size
+    weights = tf.get_variable('weights-dft', [filter_size, filter_size,
+                                              n_filters_previous_layer, n_filters])
+    biases = tf.get_variable('biases-dft', [n_filters])
+    output = ricnn.conv_to_circular_shift(previous_layer, weights, biases, n_rotations)
+    output = tf.nn.relu(output)
+    output = ricnn.dft2d_transition(output, n_rotations, batch_size, output_size,
+                                    n_filters_previous_layer, n_filters)
+    dft_size = ricnn.calculate_dft_output_size(n_filters, n_rotations)
+    return output, dft_size
+
+def get_model(x):
+    output, output_size, n_filters_previous_layer = r_e_layer(1,x, x_size,x_depth)
+    output, output_size, n_filters_previous_layer = r_e_layer(2,output, output_size, n_filters_previous_layer)
+    output = tf.nn.max_pool(output, [1, pool_stride, pool_stride, 1],
+                                [1, pool_stride, pool_stride, 1], padding='VALID')
+    output_size = output_size/2
+    output, output_size, n_filters_previous_layer = r_e_layer(3,output, output_size, n_filters_previous_layer)
+    output, output_size, n_filters_previous_layer = r_e_layer(4,output, output_size, n_filters_previous_layer)
+    output, output_size, n_filters_previous_layer = r_e_layer(5,output, output_size, n_filters_previous_layer)
+    output, output_size, n_filters_previous_layer = r_e_layer(6,output, output_size, n_filters_previous_layer, 4)
+    output, output_size, n_filters_previous_layer = r_e_layer(7, output, output_size, n_filters_previous_layer, 4)
+    output, dft_size = dft_layer(output, output_size, n_filters_previous_layer)
+    images_flat = tf.contrib.layers.flatten(output)
+    l7 = tf.contrib.layers.fully_connected(images_flat, y_size, tf.nn.softmax)
+    return l7
+
 def preprocess_mnist_data(train_data, test_data, train_labels, test_labels):
     train_mean = np.mean(train_data)  # compute mean over all pixels make sure equivariance is preserved
     train_data -= train_mean
@@ -86,7 +98,7 @@ def save_results(train_acc, train_loss, val_acc, val_loss):
 def plot(epochs, train_acc, val_acc):
     plt.plot(epochs, train_acc, 'bo', label='Training accuracy')
     plt.plot(epochs, val_acc, 'b', label='Validation accuracy')
-    plt.title('GCNN Traing and validation accuracy')
+    plt.title('RiCNN Traing and validation accuracy')
     plt.xlabel = 'Epochs'
     plt.ylabel = 'Accuracy'
     plt.legend()
@@ -111,10 +123,7 @@ def get_data():
 
     return train_data,train_labels, val_data, val_labels, test_data, test_labels
 
-x_size = 28
-x_depth = 1
-batch_size = 100
-y_size = 10
+
 
 def get_acc(data, labels, x, y, accuracy, loss, train_op, type, train=False):
     val_step=0
@@ -148,7 +157,7 @@ def train(epochs):
 
         x = tf.placeholder(tf.float32, shape=[None, x_size, x_size, x_depth], name='input')
         y = tf.placeholder(dtype=tf.int64, shape=[None])
-        logits = get_model(x, x_depth)
+        logits = get_model(x)
         loss = tf.reduce_mean(tf.nn.sparse_softmax_cross_entropy_with_logits(logits=logits, labels=y))
         train_op = tf.train.AdamOptimizer(learning_rate=0.001).minimize(loss)
         correct_prediction = tf.equal(y, tf.argmax(logits, 1))

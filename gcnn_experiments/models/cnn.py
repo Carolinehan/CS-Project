@@ -1,72 +1,68 @@
 import os
 import numpy as np
 import tensorflow as tf
-from groupy.gconv.tensorflow_gconv.splitgconv2d import gconv2d, gconv2d_util
 import time
 import matplotlib.pyplot as plt
+import ricnn
 
 VALID='VALID'
 channels = 10
 best_model='best_model'
 results_fold='results'
-
-def generate_p4z2layer(layer_order, previous_layer, iamge_channel, kernel_size=3):
-    gconv_indices, gconv_shape_info, w_shape = gconv2d_util(
-        h_input='Z2', h_output='C4', in_channels=iamge_channel, out_channels=channels, ksize=3)
-    w = tf.get_variable('weights-conv' + str(layer_order), w_shape)
-    l = gconv2d(input=previous_layer, filter=w, strides=[1, 1, 1, 1], padding=VALID,
-                 gconv_indices=gconv_indices, gconv_shape_info=gconv_shape_info, use_cudnn_on_gpu=True)
-    l = tf.layers.batch_normalization(l)
-    l = tf.nn.relu(l)
-    return l
-
-def generate_p4p4layer(layer_order, previous_layer, kernel_size=3):
-    gconv_indices, gconv_shape_info, w_shape = gconv2d_util(
-        h_input='C4', h_output='C4', in_channels=channels, out_channels=channels, ksize=kernel_size)
-    w = tf.get_variable('weights-conv' + str(layer_order), w_shape)
-    l = gconv2d(input=previous_layer, filter=w, strides=[1, 1, 1, 1], padding=VALID,
-                 gconv_indices=gconv_indices, gconv_shape_info=gconv_shape_info, use_cudnn_on_gpu=True)
-    return l
-
-def generate_p4p4layer_n_a(layer_order, previous_layer, kernel_size=3):
-    gconv_indices, gconv_shape_info, w_shape = gconv2d_util(
-        h_input='C4', h_output='C4', in_channels=channels, out_channels=channels, ksize=kernel_size)
-    w = tf.get_variable('weights-conv' + str(layer_order), w_shape)
-    l = gconv2d(input=previous_layer, filter=w, strides=[1, 1, 1, 1], padding=VALID,
-                 gconv_indices=gconv_indices, gconv_shape_info=gconv_shape_info, use_cudnn_on_gpu=True)
-    l = tf.layers.batch_normalization(l, training=True)
-    l = tf.nn.relu(l)
-    return l
-
-def get_model(x, iamge_channel):
-    l1=generate_p4z2layer(1, x, iamge_channel)
-    l2 =generate_p4p4layer_n_a(2, l1)
-    l2= tf.nn.max_pool(l2,[1,2, 2,1], [1,2, 2,1], padding=VALID)
-    l3 = generate_p4p4layer_n_a(3,l2)
-    l4 = generate_p4p4layer_n_a(4, l3)
-    l5 = generate_p4p4layer_n_a(5, l4)
-    l6 = generate_p4p4layer_n_a(6, l5)
-    l7 = generate_p4p4layer_n_a(7, l6, kernel_size=4 )
-    images_flat = tf.contrib.layers.flatten(l7)
-    l7 = tf.contrib.layers.fully_connected(images_flat, y_size, tf.nn.softmax)
-    return l7
-
-
 datadir ='../mnist-rot'
 trainfn='train.npz'
 valfn='valid.npz'
 testfn='test.npz'
+
+
+filter_size = 3
+n_filters = 128
+n_rotations = 4
+stride = 1
+pool_stride = 2
+def build_layer(layer_order, previous_layer, weight_size=n_filters, activation='relu'):
+    weights = tf.get_variable('weights-conv'+str(layer_order), [filter_size,filter_size, x_depth, weight_size])
+    biases = tf.get_variable('biases-conv'+str(layer_order), [weight_size])
+    output = tf.nn.conv2d(previous_layer, weights, padding=VALID, use_cudnn_on_gpu=True, data_format='NHWC')
+    output = tf.nn.bias_add(output, biases)
+    output = tf.layers.batch_normalization(output)
+    if activation == 'relu':
+        output = tf.nn.relu(output)
+    elif activation == 'softmax':
+        output = tf.nn.softmax(output)
+    return output
+
+def get_normal_model(x):
+    l2 = build_layer(1, x, 128)
+    l3= tf.layers.dropout(l2,0.2)
+    images_flat = tf.contrib.layers.flatten(l3)
+    l5 = tf.contrib.layers.fully_connected(images_flat, y_size, tf.nn.softmax)
+    return l5
+def get_model(x):
+    l1 = build_layer(1,x)
+    l2 = build_layer(2,l1)
+    l2 = tf.nn.max_pool(l2, [1, pool_stride, pool_stride, 1],
+                                [1, pool_stride, pool_stride, 1], padding='VALID')
+
+    l3 = build_layer(3,l2)
+    l4 = build_layer(4,l3)
+    l5 = build_layer(5,l4)
+    l6 = build_layer(6,l5)
+    images_flat = tf.contrib.layers.flatten(l6)
+    l7 = tf.contrib.layers.fully_connected(images_flat, y_size, tf.nn.softmax)
+    return l7
+
 def preprocess_mnist_data(train_data, test_data, train_labels, test_labels):
-    train_mean = np.mean(train_data)  # compute mean over all pixels make sure equivariance is preserved
-    train_data -= train_mean
-    test_data -= train_mean
-    train_std = np.std(train_data)
-    train_data /= train_std
-    test_data /= train_std
-    train_data = train_data.astype(np.float32)
-    test_data = test_data.astype(np.float32)
-    train_labels = train_labels.astype(np.int32)
-    test_labels = test_labels.astype(np.int32)
+    # train_mean = np.mean(train_data)  # compute mean over all pixels make sure equivariance is preserved
+    # train_data -= train_mean
+    # test_data -= train_mean
+    # train_std = np.std(train_data)
+    # train_data /= train_std
+    # test_data /= train_std
+    # train_data = train_data.astype(np.float32)
+    # test_data = test_data.astype(np.float32)
+    # train_labels = train_labels.astype(np.int32)
+    # test_labels = test_labels.astype(np.int32)
 
     return train_data, test_data, train_labels, test_labels
 def save_results(train_acc, train_loss, val_acc, val_loss):
@@ -86,7 +82,7 @@ def save_results(train_acc, train_loss, val_acc, val_loss):
 def plot(epochs, train_acc, val_acc):
     plt.plot(epochs, train_acc, 'bo', label='Training accuracy')
     plt.plot(epochs, val_acc, 'b', label='Validation accuracy')
-    plt.title('GCNN Traing and validation accuracy')
+    plt.title('CNN Traing and validation accuracy')
     plt.xlabel = 'Epochs'
     plt.ylabel = 'Accuracy'
     plt.legend()
@@ -148,7 +144,7 @@ def train(epochs):
 
         x = tf.placeholder(tf.float32, shape=[None, x_size, x_size, x_depth], name='input')
         y = tf.placeholder(dtype=tf.int64, shape=[None])
-        logits = get_model(x, x_depth)
+        logits = get_model(x)
         loss = tf.reduce_mean(tf.nn.sparse_softmax_cross_entropy_with_logits(logits=logits, labels=y))
         train_op = tf.train.AdamOptimizer(learning_rate=0.001).minimize(loss)
         correct_prediction = tf.equal(y, tf.argmax(logits, 1))
