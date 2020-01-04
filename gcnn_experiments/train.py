@@ -2,61 +2,15 @@ import argparse
 import os
 import numpy as np
 import tensorflow as tf
-from groupy.gconv.tensorflow_gconv.splitgconv2d import gconv2d, gconv2d_util
 import time
 import matplotlib.pyplot as plt
-
+import models.GCNN as GCNN
+import models.cnn as cnn
+import models.RiCNN as RiCNN
 VALID='VALID'
-channels = 10
 best_model='best_model'
 results_fold='results'
-x_size = 28
-x_depth = 1
 batch_size = 100
-y_size = 10
-
-def generate_p4z2layer(layer_order, previous_layer, iamge_channel, kernel_size=3):
-    gconv_indices, gconv_shape_info, w_shape = gconv2d_util(
-        h_input='Z2', h_output='C4', in_channels=iamge_channel, out_channels=channels, ksize=3)
-    w = tf.get_variable('weights-conv' + str(layer_order), w_shape)
-    l = gconv2d(input=previous_layer, filter=w, strides=[1, 1, 1, 1], padding=VALID,
-                 gconv_indices=gconv_indices, gconv_shape_info=gconv_shape_info, use_cudnn_on_gpu=True)
-    l = tf.layers.batch_normalization(l)
-    l = tf.nn.relu(l)
-    return l
-
-def generate_p4p4layer(layer_order, previous_layer, kernel_size=3):
-    gconv_indices, gconv_shape_info, w_shape = gconv2d_util(
-        h_input='C4', h_output='C4', in_channels=channels, out_channels=channels, ksize=kernel_size)
-    w = tf.get_variable('weights-conv' + str(layer_order), w_shape)
-    l = gconv2d(input=previous_layer, filter=w, strides=[1, 1, 1, 1], padding=VALID,
-                 gconv_indices=gconv_indices, gconv_shape_info=gconv_shape_info, use_cudnn_on_gpu=True)
-    return l
-
-def generate_p4p4layer_n_a(layer_order, previous_layer, kernel_size=3):
-    gconv_indices, gconv_shape_info, w_shape = gconv2d_util(
-        h_input='C4', h_output='C4', in_channels=channels, out_channels=channels, ksize=kernel_size)
-    w = tf.get_variable('weights-conv' + str(layer_order), w_shape)
-    l = gconv2d(input=previous_layer, filter=w, strides=[1, 1, 1, 1], padding=VALID,
-                 gconv_indices=gconv_indices, gconv_shape_info=gconv_shape_info, use_cudnn_on_gpu=True)
-    l = tf.layers.batch_normalization(l, training=True)
-    l = tf.nn.relu(l)
-    return l
-
-def get_model(x, iamge_channel):
-    l1=generate_p4z2layer(1, x, iamge_channel)
-    l2 =generate_p4p4layer_n_a(2, l1)
-    l2= tf.nn.max_pool(l2,[1,2, 2,1], [1,2, 2,1], padding=VALID)
-    l3 = generate_p4p4layer_n_a(3,l2)
-    l4 = generate_p4p4layer_n_a(4, l3)
-    l5 = generate_p4p4layer_n_a(5, l4)
-    l6 = generate_p4p4layer_n_a(6, l5)
-    l7 = generate_p4p4layer_n_a(7, l6, kernel_size=4 )
-    images_flat = tf.contrib.layers.flatten(l7)
-    l7 = tf.contrib.layers.fully_connected(images_flat, y_size, tf.nn.softmax)
-    return l7
-
-
 trainfn='train.npz'
 valfn='valid.npz'
 testfn='test.npz'
@@ -96,25 +50,24 @@ def plot(epochs, train_acc, val_acc):
     plt.legend()
     plt.show()
 
-def read_data(file_name, datadir):
+def read_data(file_name, datadir, x_size, x_depth):
     set = np.load(os.path.join(datadir, file_name))
     data = set['data']
     data = np.reshape(data, (-1, x_size, x_size, x_depth))
     labels = set['labels']
     return data, labels
 
-def get_data(datadir):
-    train_data, train_labels = read_data(trainfn, datadir)
-    val_data, val_labels = read_data(valfn, datadir)
+def get_data(datadir, x_size, x_depth):
+    train_data, train_labels = read_data(trainfn, datadir, x_size, x_depth)
+    val_data, val_labels = read_data(valfn, datadir, x_size, x_depth)
     train_data, val_data, train_labels, val_labels = preprocess_mnist_data(
         train_data, val_data, train_labels, val_labels)
 
-    test_data, test_labels = read_data(testfn, datadir)
+    test_data, test_labels = read_data(testfn, datadir, x_size, x_depth)
     _, test_data, _, test_labels = preprocess_mnist_data(
         train_data, test_data, train_labels, test_labels)
 
     return train_data,train_labels, val_data, val_labels, test_data, test_labels
-
 
 
 def get_acc(data, labels, x, y, accuracy, loss, train_op, type, train=False):
@@ -144,11 +97,26 @@ def get_acc(data, labels, x, y, accuracy, loss, train_op, type, train=False):
     return acc, loss_value
 
 def train(epochs, datadir, model):
-    train_data, train_labels, val_data, val_labels, test_data, test_labels = get_data(datadir)
+
+    if 'mnist' in datadir:
+        x_size = 28
+        x_depth =1
+        y_size = 10
+    elif 'cancer' in datadir:
+        x_size = 80
+        x_depth = 3
+        y_size = 2
+    train_data, train_labels, val_data, val_labels, test_data, test_labels = get_data(datadir, x_size, x_depth)
     with tf.Graph().as_default():
         x = tf.placeholder(tf.float32, shape=[None, x_size, x_size, x_depth], name='input')
         y = tf.placeholder(dtype=tf.int64, shape=[None])
-        logits = get_model(x, x_depth)
+        if model == 'cnn':
+            logits = cnn.get_model(x,x_depth, y_size)
+        elif model == 'RiCNN':
+             logits = RiCNN.get_model(x,x_size, x_depth, y_size)
+        elif model == 'GCNN':
+            logits = GCNN.get_model(x, x_depth, y_size)
+
         loss = tf.reduce_mean(tf.nn.sparse_softmax_cross_entropy_with_logits(logits=logits, labels=y))
         train_op = tf.train.AdamOptimizer(learning_rate=0.001).minimize(loss)
         correct_prediction = tf.equal(y, tf.argmax(logits, 1))
@@ -186,8 +154,9 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
     parser.add_argument('--datadir', type=str, default='mnist-rot')
-    parser.add_argument('--model', type=str, default='GCNN')
+    parser.add_argument('--model', type=str, default='RiCNN')
     parser.add_argument('--epochs', type=int, default=100)
 
-    args = vars(parser.parse_args())
-    train(vars(args))
+    args = parser.parse_args()
+    train(**vars(args))
+

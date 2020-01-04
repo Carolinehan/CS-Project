@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6e5094b6-2877-4a94-8a46-411d1c964420" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/gcnn_experiments.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gcnn_experiments.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/P4CNN.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/P4CNN.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/RiCNN.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/RiCNN.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/cnn.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/cnn.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/train.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +42,29 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.RiCNN">
+  <component name="RunManager" selected="Python.train">
+    <configuration name="GCNN" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="gcnn_experiments" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/models" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/models/GCNN.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="P4CNN" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="gcnn_experiments" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -57,28 +79,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/models/P4CNN.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="P4CNN_Chainer" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="gcnn_experiments" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/models" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/models/P4CNN_Chainer.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -131,12 +131,35 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="train" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="gcnn_experiments" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/train.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.train" />
+        <item itemvalue="Python.GCNN" />
         <item itemvalue="Python.RiCNN" />
         <item itemvalue="Python.P4CNN" />
         <item itemvalue="Python.cnn" />
-        <item itemvalue="Python.P4CNN_Chainer" />
       </list>
     </recent_temporary>
   </component>
@@ -172,7 +195,7 @@
       <workItem from="1577129481046" duration="1616000" />
       <workItem from="1577439506087" duration="136000" />
       <workItem from="1577440146282" duration="9001000" />
-      <workItem from="1577729326182" duration="26601000" />
+      <workItem from="1577729326182" duration="28903000" />
     </task>
     <servers />
   </component>
@@ -180,46 +203,46 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1540" height="466" key="DebuggerActiveHint" timestamp="1578144760165">
+    <state width="1540" height="466" key="DebuggerActiveHint" timestamp="1578160761585">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1540" height="466" key="DebuggerActiveHint/67.27.1853.1053@67.27.1853.1053" timestamp="1578144760165" />
+    <state width="1540" height="466" key="DebuggerActiveHint/67.27.1853.1053@67.27.1853.1053" timestamp="1578160761585" />
     <state x="771" y="310" width="424" height="484" key="FileChooserDialogImpl" timestamp="1578141356443">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="771" y="310" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1578141356443" />
-    <state width="1807" height="344" key="GridCell.Tab.0.bottom" timestamp="1578147571335">
+    <state width="1807" height="344" key="GridCell.Tab.0.bottom" timestamp="1578161489848">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="344" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1578147571335" />
-    <state width="1807" height="344" key="GridCell.Tab.0.center" timestamp="1578147571334">
+    <state width="1807" height="344" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1578161489848" />
+    <state width="1807" height="344" key="GridCell.Tab.0.center" timestamp="1578161489847">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="344" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1578147571334" />
-    <state width="1807" height="344" key="GridCell.Tab.0.left" timestamp="1578147571334">
+    <state width="1807" height="344" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1578161489847" />
+    <state width="1807" height="344" key="GridCell.Tab.0.left" timestamp="1578161489847">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="344" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1578147571334" />
-    <state width="1807" height="344" key="GridCell.Tab.0.right" timestamp="1578147571334">
+    <state width="1807" height="344" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1578161489847" />
+    <state width="1807" height="344" key="GridCell.Tab.0.right" timestamp="1578161489847">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="344" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1578147571334" />
-    <state width="1807" height="344" key="GridCell.Tab.1.bottom" timestamp="1578147571240">
+    <state width="1807" height="344" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1578161489847" />
+    <state width="1807" height="344" key="GridCell.Tab.1.bottom" timestamp="1578161489792">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="344" key="GridCell.Tab.1.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1578147571240" />
-    <state width="1807" height="344" key="GridCell.Tab.1.center" timestamp="1578147571239">
+    <state width="1807" height="344" key="GridCell.Tab.1.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1578161489792" />
+    <state width="1807" height="344" key="GridCell.Tab.1.center" timestamp="1578161489791">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="344" key="GridCell.Tab.1.center/67.27.1853.1053@67.27.1853.1053" timestamp="1578147571239" />
-    <state width="1807" height="344" key="GridCell.Tab.1.left" timestamp="1578147571239">
+    <state width="1807" height="344" key="GridCell.Tab.1.center/67.27.1853.1053@67.27.1853.1053" timestamp="1578161489791" />
+    <state width="1807" height="344" key="GridCell.Tab.1.left" timestamp="1578161489791">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="344" key="GridCell.Tab.1.left/67.27.1853.1053@67.27.1853.1053" timestamp="1578147571239" />
-    <state width="1807" height="344" key="GridCell.Tab.1.right" timestamp="1578147571240">
+    <state width="1807" height="344" key="GridCell.Tab.1.left/67.27.1853.1053@67.27.1853.1053" timestamp="1578161489791" />
+    <state width="1807" height="344" key="GridCell.Tab.1.right" timestamp="1578161489792">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="344" key="GridCell.Tab.1.right/67.27.1853.1053@67.27.1853.1053" timestamp="1578147571240" />
+    <state width="1807" height="344" key="GridCell.Tab.1.right/67.27.1853.1053@67.27.1853.1053" timestamp="1578161489792" />
     <state x="482" y="187" key="SettingsEditor" timestamp="1578051402757">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
@@ -229,10 +252,28 @@
     </state>
     <state x="1066" y="360" key="com.intellij.ide.util.TipDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1576849103878" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/models/GCNN.py</url>
+          <line>52</line>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/train.py</url>
+          <line>117</line>
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/gcnn_experiments$P4CNN.coverage" NAME="P4CNN Coverage Results" MODIFIED="1578147116375" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/models" />
     <SUITE FILE_PATH="coverage/gcnn_experiments$cnn.coverage" NAME="cnn Coverage Results" MODIFIED="1578146971073" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/models" />
+    <SUITE FILE_PATH="coverage/gcnn_experiments$train.coverage" NAME="train Coverage Results" MODIFIED="1578161489754" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/gcnn_experiments$P4CNN_Chainer.coverage" NAME="P4CNN_Chainer Coverage Results" MODIFIED="1577733729096" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/models" />
     <SUITE FILE_PATH="coverage/gcnn_experiments$RiCNN.coverage" NAME="RiCNN Coverage Results" MODIFIED="1578147571203" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/models" />
+    <SUITE FILE_PATH="coverage/gcnn_experiments$GCNN.coverage" NAME="GCNN Coverage Results" MODIFIED="1578160795447" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/models" />
   </component>
 </project>
