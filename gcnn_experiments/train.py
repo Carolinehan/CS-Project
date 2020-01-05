@@ -11,22 +11,8 @@ VALID='VALID'
 best_model='best_model'
 results_fold='results'
 batch_size = 100
-trainfn='train.npz'
-valfn='valid.npz'
-testfn='test.npz'
-def preprocess_mnist_data(train_data, test_data, train_labels, test_labels):
-    train_mean = np.mean(train_data)  # compute mean over all pixels make sure equivariance is preserved
-    train_data -= train_mean
-    test_data -= train_mean
-    train_std = np.std(train_data)
-    train_data /= train_std
-    test_data /= train_std
-    train_data = train_data.astype(np.float32)
-    test_data = test_data.astype(np.float32)
-    train_labels = train_labels.astype(np.int32)
-    test_labels = test_labels.astype(np.int32)
+import data
 
-    return train_data, test_data, train_labels, test_labels
 def save_results(train_acc, train_loss, val_acc, val_loss, datadir):
     # if args.restart_from is None:
     result_dir =datadir + '/' + time.strftime('r%Y_%m_%d_%H_%M_%S')
@@ -50,24 +36,7 @@ def plot(epochs, train_acc, val_acc):
     plt.legend()
     plt.show()
 
-def read_data(file_name, datadir, x_size, x_depth):
-    set = np.load(os.path.join(datadir, file_name))
-    data = set['data']
-    data = np.reshape(data, (-1, x_size, x_size, x_depth))
-    labels = set['labels']
-    return data, labels
 
-def get_data(datadir, x_size, x_depth):
-    train_data, train_labels = read_data(trainfn, datadir, x_size, x_depth)
-    val_data, val_labels = read_data(valfn, datadir, x_size, x_depth)
-    train_data, val_data, train_labels, val_labels = preprocess_mnist_data(
-        train_data, val_data, train_labels, val_labels)
-
-    test_data, test_labels = read_data(testfn, datadir, x_size, x_depth)
-    _, test_data, _, test_labels = preprocess_mnist_data(
-        train_data, test_data, train_labels, test_labels)
-
-    return train_data,train_labels, val_data, val_labels, test_data, test_labels
 
 
 def get_acc(data, labels, x, y, accuracy, loss, train_op, type, train=False):
@@ -106,7 +75,7 @@ def train(epochs, datadir, model):
         x_size = 80
         x_depth = 3
         y_size = 2
-    train_data, train_labels, val_data, val_labels, test_data, test_labels = get_data(datadir, x_size, x_depth)
+    train_data, train_labels, val_data, val_labels =data.get_data(datadir, x_size, x_depth)
     with tf.Graph().as_default():
         x = tf.placeholder(tf.float32, shape=[None, x_size, x_size, x_depth], name='input')
         y = tf.placeholder(dtype=tf.int64, shape=[None])
@@ -138,7 +107,7 @@ def train(epochs, datadir, model):
             val_acc, val_loss = get_acc(val_data, val_labels, x, y, accuracy, loss, train_op, 'Validation')
             val_accs[epoch] = val_acc
             val_losses[epoch] = val_loss
-
+    test_data, test_labels = data.get_test_data(datadir, x_size, x_depth)
     get_acc(test_data, test_labels, x, y, accuracy, loss, train_op,'Test')
     total_time=time.time()-total_start_time
     print('Total time: %fs' %total_time)
@@ -153,8 +122,8 @@ def restore_model():
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('--datadir', type=str, default='mnist-rot')
-    parser.add_argument('--model', type=str, default='RiCNN')
+    parser.add_argument('--datadir', type=str, default='oral-cancer')
+    parser.add_argument('--model', type=str, default='GCNN')
     parser.add_argument('--epochs', type=int, default=100)
 
     args = parser.parse_args()

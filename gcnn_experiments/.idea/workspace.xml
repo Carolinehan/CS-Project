@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="6e5094b6-2877-4a94-8a46-411d1c964420" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/RiCNN.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/RiCNN.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/cnn.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/cnn.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/train.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -34,7 +32,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../CNN_demo" />
+    <property name="last_opened_file_path" value="$USER_HOME$/project/data" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -195,7 +193,8 @@
       <workItem from="1577129481046" duration="1616000" />
       <workItem from="1577439506087" duration="136000" />
       <workItem from="1577440146282" duration="9001000" />
-      <workItem from="1577729326182" duration="28903000" />
+      <workItem from="1577729326182" duration="33096000" />
+      <workItem from="1578218397582" duration="4239000" />
     </task>
     <servers />
   </component>
@@ -203,46 +202,46 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1540" height="466" key="DebuggerActiveHint" timestamp="1578160761585">
+    <state width="1540" height="466" key="DebuggerActiveHint" timestamp="1578219339052">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1540" height="466" key="DebuggerActiveHint/67.27.1853.1053@67.27.1853.1053" timestamp="1578160761585" />
-    <state x="771" y="310" width="424" height="484" key="FileChooserDialogImpl" timestamp="1578141356443">
+    <state width="1540" height="466" key="DebuggerActiveHint/67.27.1853.1053@67.27.1853.1053" timestamp="1578219339052" />
+    <state x="771" y="310" width="424" height="484" key="FileChooserDialogImpl" timestamp="1578217731611">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="771" y="310" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1578141356443" />
-    <state width="1807" height="344" key="GridCell.Tab.0.bottom" timestamp="1578161489848">
+    <state x="771" y="310" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1578217731611" />
+    <state width="1807" height="344" key="GridCell.Tab.0.bottom" timestamp="1578222953065">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="344" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1578161489848" />
-    <state width="1807" height="344" key="GridCell.Tab.0.center" timestamp="1578161489847">
+    <state width="1807" height="344" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1578222953065" />
+    <state width="1807" height="344" key="GridCell.Tab.0.center" timestamp="1578222953065">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="344" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1578161489847" />
-    <state width="1807" height="344" key="GridCell.Tab.0.left" timestamp="1578161489847">
+    <state width="1807" height="344" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1578222953065" />
+    <state width="1807" height="344" key="GridCell.Tab.0.left" timestamp="1578222953064">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="344" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1578161489847" />
-    <state width="1807" height="344" key="GridCell.Tab.0.right" timestamp="1578161489847">
+    <state width="1807" height="344" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1578222953064" />
+    <state width="1807" height="344" key="GridCell.Tab.0.right" timestamp="1578222953065">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="344" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1578161489847" />
-    <state width="1807" height="344" key="GridCell.Tab.1.bottom" timestamp="1578161489792">
+    <state width="1807" height="344" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1578222953065" />
+    <state width="1807" height="344" key="GridCell.Tab.1.bottom" timestamp="1578222898593">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="344" key="GridCell.Tab.1.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1578161489792" />
-    <state width="1807" height="344" key="GridCell.Tab.1.center" timestamp="1578161489791">
+    <state width="1807" height="344" key="GridCell.Tab.1.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1578222898593" />
+    <state width="1807" height="344" key="GridCell.Tab.1.center" timestamp="1578222898593">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="344" key="GridCell.Tab.1.center/67.27.1853.1053@67.27.1853.1053" timestamp="1578161489791" />
-    <state width="1807" height="344" key="GridCell.Tab.1.left" timestamp="1578161489791">
+    <state width="1807" height="344" key="GridCell.Tab.1.center/67.27.1853.1053@67.27.1853.1053" timestamp="1578222898593" />
+    <state width="1807" height="344" key="GridCell.Tab.1.left" timestamp="1578222898593">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="344" key="GridCell.Tab.1.left/67.27.1853.1053@67.27.1853.1053" timestamp="1578161489791" />
-    <state width="1807" height="344" key="GridCell.Tab.1.right" timestamp="1578161489792">
+    <state width="1807" height="344" key="GridCell.Tab.1.left/67.27.1853.1053@67.27.1853.1053" timestamp="1578222898593" />
+    <state width="1807" height="344" key="GridCell.Tab.1.right" timestamp="1578222898593">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="344" key="GridCell.Tab.1.right/67.27.1853.1053@67.27.1853.1053" timestamp="1578161489792" />
+    <state width="1807" height="344" key="GridCell.Tab.1.right/67.27.1853.1053@67.27.1853.1053" timestamp="1578222898593" />
     <state x="482" y="187" key="SettingsEditor" timestamp="1578051402757">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
@@ -252,26 +251,10 @@
     </state>
     <state x="1066" y="360" key="com.intellij.ide.util.TipDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1576849103878" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/models/GCNN.py</url>
-          <line>52</line>
-          <option name="timeStamp" value="24" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/train.py</url>
-          <line>117</line>
-          <option name="timeStamp" value="25" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/gcnn_experiments$P4CNN.coverage" NAME="P4CNN Coverage Results" MODIFIED="1578147116375" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/models" />
     <SUITE FILE_PATH="coverage/gcnn_experiments$cnn.coverage" NAME="cnn Coverage Results" MODIFIED="1578146971073" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/models" />
-    <SUITE FILE_PATH="coverage/gcnn_experiments$train.coverage" NAME="train Coverage Results" MODIFIED="1578161489754" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/gcnn_experiments$train.coverage" NAME="train Coverage Results" MODIFIED="1578222895502" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/gcnn_experiments$P4CNN_Chainer.coverage" NAME="P4CNN_Chainer Coverage Results" MODIFIED="1577733729096" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/models" />
     <SUITE FILE_PATH="coverage/gcnn_experiments$RiCNN.coverage" NAME="RiCNN Coverage Results" MODIFIED="1578147571203" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/models" />
     <SUITE FILE_PATH="coverage/gcnn_experiments$GCNN.coverage" NAME="GCNN Coverage Results" MODIFIED="1578160795447" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/models" />
