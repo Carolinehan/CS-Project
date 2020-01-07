@@ -130,6 +130,25 @@ venv.bak/
 .mypy_cache/
 .dmypy.json
 dmypy.json
-
+<<<<<<< Updated upstream
+*.npy
+*.npz
+mnist-rot/
+oral-cancer/
+results/
+shuffle/
+=======
+results/
+result/
+best_model/
+*.npl
+*.npz
+mnist-rot/
+oral-cancer/
+*.csv
+*.txt
+*.ckpt.*
+*.ckpt
+model.*
 # Pyre type checker
 .pyre/
