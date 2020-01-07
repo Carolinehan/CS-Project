@@ -2,7 +2,152 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6e5094b6-2877-4a94-8a46-411d1c964420" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../data/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../data/.idea/data.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../data/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../data/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../data/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../data/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../data/oral_cancer_saver.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/Figure_RiCNN.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_11_41_45/train_acc.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_11_41_45/train_loss.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_11_41_45/val_acc.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_11_41_45/val_loss.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_16_13_11/train_acc.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_16_13_11/train_loss.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_16_13_11/val_acc.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_16_13_11/val_loss.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_16_30_59/train_acc.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_16_30_59/train_loss.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_16_30_59/val_acc.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_16_30_59/val_loss.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_17_18_14/train_acc.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_17_18_14/train_loss.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_17_18_14/val_acc.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_17_18_14/val_loss.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_17_29_53/train_acc.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_17_29_53/train_loss.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_17_29_53/val_acc.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_17_29_53/val_loss.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_18_18_01/train_acc.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_18_18_01/train_loss.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_18_18_01/val_acc.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_18_18_01/val_loss.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_18_21_09/train_acc.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_18_21_09/train_loss.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_18_21_09/val_acc.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_18_21_09/val_loss.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_18_23_31/train_acc.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_18_23_31/train_loss.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_18_23_31/val_acc.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_18_23_31/val_loss.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_18_52_37/train_acc.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_18_52_37/train_loss.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_18_52_37/val_acc.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_18_52_37/val_loss.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_18_59_04/train_acc.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_18_59_04/train_loss.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_18_59_04/val_acc.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_18_59_04/val_loss.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_19_01_33/train_acc.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_19_01_33/train_loss.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_19_01_33/val_acc.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_19_01_33/val_loss.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_19_18_25/train_acc.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_19_18_25/train_loss.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_19_18_25/val_acc.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_19_18_25/val_loss.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_19_20_23/train_acc.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_19_20_23/train_loss.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_19_20_23/val_acc.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_19_20_23/val_loss.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_19_22_59/train_acc.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_19_22_59/train_loss.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_19_22_59/val_acc.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_19_22_59/val_loss.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_19_23_59/train_acc.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_19_23_59/train_loss.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_19_23_59/val_acc.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_19_23_59/val_loss.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_19_27_06/train_acc.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_19_27_06/train_loss.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_19_27_06/val_acc.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_19_27_06/val_loss.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_19_29_01/train_acc.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_19_29_01/train_loss.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_19_29_01/val_acc.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_19_29_01/val_loss.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_19_46_30/train_acc.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_19_46_30/train_loss.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_19_46_30/val_acc.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_19_46_30/val_loss.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_20_09_32/train_acc.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_20_09_32/train_loss.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_20_09_32/val_acc.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mnist-rot/r2020_01_06_20_09_32/val_loss.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/best_model/best.ckpt.data-00000-of-00001" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/best_model/best.ckpt.index" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/best_model/cancer/gcnn/best.ckpt.data-00000-of-00001" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/best_model/cancer/gcnn/best.ckpt.index" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/best_model/cancer/gcnn/checkpoint" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/best_model/checkpoint" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/best_model/mnist/cnn/best.ckpt.data-00000-of-00001" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/best_model/mnist/cnn/best.ckpt.index" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/best_model/mnist/cnn/checkpoint" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/best_model/mnist/gcnn/best.ckpt.data-00000-of-00001" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/best_model/mnist/gcnn/best.ckpt.index" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/best_model/mnist/gcnn/checkpoint" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/best_model/mnist/ricnn/best.ckpt.data-00000-of-00001" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/best_model/mnist/ricnn/best.ckpt.index" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/best_model/mnist/ricnn/checkpoint" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/oral-cancer/r2020_01_05_14_27_56/train_acc.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/oral-cancer/r2020_01_05_14_27_56/train_loss.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/oral-cancer/r2020_01_05_14_27_56/val_acc.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/oral-cancer/r2020_01_05_14_27_56/val_loss.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/oral-cancer/r2020_01_06_11_20_24/train_acc.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/oral-cancer/r2020_01_06_11_20_24/train_loss.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/oral-cancer/r2020_01_06_11_20_24/val_acc.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/oral-cancer/r2020_01_06_11_20_24/val_loss.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/oral-cancer/r2020_01_06_15_48_22/train_acc.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/oral-cancer/r2020_01_06_15_48_22/train_loss.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/oral-cancer/r2020_01_06_15_48_22/val_acc.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/oral-cancer/r2020_01_06_15_48_22/val_loss.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/oral-cancer/test_data.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/oral-cancer/test_label.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/oral-cancer/train_data.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/oral-cancer/train_label.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/GCNN/pred_r2020_01_06_20_09_32/pred_results.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/GCNN/test_r2020_01_06_20_09_32/test_results.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/GCNN/train_r2020_01_06_20_09_32/plot.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/cnn/pred_r2020_01_06_19_46_30/pred_results.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/cnn/test_r2020_01_06_19_46_30/test_results.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/cnn/train_r2020_01_06_19_46_30/plot.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< Updated upstream
+      <change beforePath="$PROJECT_DIR$/models/RiCNN.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/RiCNN.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/cnn.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/cnn.py" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/conv_bn_act.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data.py" beforeDir="false" afterPath="$PROJECT_DIR$/data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gcnn.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mnist-rot/Figure_gcnn.png" beforeDir="false" afterPath="$PROJECT_DIR$/mnist-rot/Figure_gcnn.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/CNN.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/CNN.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/P4CNN.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/P4CNN_Chainer.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/P4CNN_RP.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/RiCNN.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/RiCNN.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Z2CNN.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/best_model/saved_model.pb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/best_model/variables/variables.data-00000-of-00001" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/best_model/variables/variables.index" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/checkpoint" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/cnn.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/cnn.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/model.data-00000-of-00001" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/model.index" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results_01_04.txt" beforeDir="false" afterPath="$PROJECT_DIR$/results_01_04.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ricnn.png" beforeDir="false" />
+>>>>>>> Stashed changes
       <change beforePath="$PROJECT_DIR$/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/train.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -194,7 +339,12 @@
       <workItem from="1577439506087" duration="136000" />
       <workItem from="1577440146282" duration="9001000" />
       <workItem from="1577729326182" duration="33096000" />
+<<<<<<< Updated upstream
       <workItem from="1578218397582" duration="4239000" />
+      <workItem from="1578386751891" duration="1111000" />
+=======
+      <workItem from="1578218397582" duration="28894000" />
+>>>>>>> Stashed changes
     </task>
     <servers />
   </component>
@@ -202,46 +352,90 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1540" height="466" key="DebuggerActiveHint" timestamp="1578219339052">
+    <state x="681" y="357" width="615" height="390" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1578231988519">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1540" height="466" key="DebuggerActiveHint/67.27.1853.1053@67.27.1853.1053" timestamp="1578219339052" />
-    <state x="771" y="310" width="424" height="484" key="FileChooserDialogImpl" timestamp="1578217731611">
+    <state x="681" y="357" width="615" height="390" key="#com.intellij.fileTypes.FileTypeChooser/67.27.1853.1053@67.27.1853.1053" timestamp="1578231988519" />
+    <state x="726" y="301" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1578232032658">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
+<<<<<<< Updated upstream
     <state x="771" y="310" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1578217731611" />
-    <state width="1807" height="344" key="GridCell.Tab.0.bottom" timestamp="1578222953065">
+    <state width="1807" height="344" key="GridCell.Tab.0.bottom" timestamp="1578387172826">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="344" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1578222953065" />
-    <state width="1807" height="344" key="GridCell.Tab.0.center" timestamp="1578222953065">
+    <state width="1807" height="344" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1578387172826" />
+    <state width="1807" height="344" key="GridCell.Tab.0.center" timestamp="1578387172826">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="344" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1578222953065" />
-    <state width="1807" height="344" key="GridCell.Tab.0.left" timestamp="1578222953064">
+    <state width="1807" height="344" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1578387172826" />
+    <state width="1807" height="344" key="GridCell.Tab.0.left" timestamp="1578387172825">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="344" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1578222953064" />
-    <state width="1807" height="344" key="GridCell.Tab.0.right" timestamp="1578222953065">
+    <state width="1807" height="344" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1578387172825" />
+    <state width="1807" height="344" key="GridCell.Tab.0.right" timestamp="1578387172826">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="344" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1578222953065" />
-    <state width="1807" height="344" key="GridCell.Tab.1.bottom" timestamp="1578222898593">
+    <state width="1807" height="344" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1578387172826" />
+    <state width="1807" height="344" key="GridCell.Tab.1.bottom" timestamp="1578387172721">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="344" key="GridCell.Tab.1.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1578222898593" />
-    <state width="1807" height="344" key="GridCell.Tab.1.center" timestamp="1578222898593">
+    <state width="1807" height="344" key="GridCell.Tab.1.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1578387172721" />
+    <state width="1807" height="344" key="GridCell.Tab.1.center" timestamp="1578387172721">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="344" key="GridCell.Tab.1.center/67.27.1853.1053@67.27.1853.1053" timestamp="1578222898593" />
-    <state width="1807" height="344" key="GridCell.Tab.1.left" timestamp="1578222898593">
+    <state width="1807" height="344" key="GridCell.Tab.1.center/67.27.1853.1053@67.27.1853.1053" timestamp="1578387172721" />
+    <state width="1807" height="344" key="GridCell.Tab.1.left" timestamp="1578387172721">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="344" key="GridCell.Tab.1.left/67.27.1853.1053@67.27.1853.1053" timestamp="1578222898593" />
-    <state width="1807" height="344" key="GridCell.Tab.1.right" timestamp="1578222898593">
+    <state width="1807" height="344" key="GridCell.Tab.1.left/67.27.1853.1053@67.27.1853.1053" timestamp="1578387172721" />
+    <state width="1807" height="344" key="GridCell.Tab.1.right" timestamp="1578387172721">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="344" key="GridCell.Tab.1.right/67.27.1853.1053@67.27.1853.1053" timestamp="1578222898593" />
+    <state width="1807" height="344" key="GridCell.Tab.1.right/67.27.1853.1053@67.27.1853.1053" timestamp="1578387172721" />
+=======
+    <state x="726" y="301" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1578232032658" />
+    <state width="1540" height="466" key="DebuggerActiveHint" timestamp="1578334020601">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1540" height="466" key="DebuggerActiveHint/67.27.1853.1053@67.27.1853.1053" timestamp="1578334020601" />
+    <state x="771" y="310" width="424" height="484" key="FileChooserDialogImpl" timestamp="1578231713788">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="771" y="310" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1578231713788" />
+    <state width="1807" height="344" key="GridCell.Tab.0.bottom" timestamp="1578335304051">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1807" height="344" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1578335304051" />
+    <state width="1807" height="344" key="GridCell.Tab.0.center" timestamp="1578335304051">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1807" height="344" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1578335304051" />
+    <state width="1807" height="344" key="GridCell.Tab.0.left" timestamp="1578335304050">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1807" height="344" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1578335304050" />
+    <state width="1807" height="344" key="GridCell.Tab.0.right" timestamp="1578335304051">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1807" height="344" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1578335304051" />
+    <state width="1807" height="344" key="GridCell.Tab.1.bottom" timestamp="1578335303976">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1807" height="344" key="GridCell.Tab.1.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1578335303976" />
+    <state width="1807" height="344" key="GridCell.Tab.1.center" timestamp="1578335303976">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1807" height="344" key="GridCell.Tab.1.center/67.27.1853.1053@67.27.1853.1053" timestamp="1578335303976" />
+    <state width="1807" height="344" key="GridCell.Tab.1.left" timestamp="1578335303976">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1807" height="344" key="GridCell.Tab.1.left/67.27.1853.1053@67.27.1853.1053" timestamp="1578335303976" />
+    <state width="1807" height="344" key="GridCell.Tab.1.right" timestamp="1578335303976">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1807" height="344" key="GridCell.Tab.1.right/67.27.1853.1053@67.27.1853.1053" timestamp="1578335303976" />
+>>>>>>> Stashed changes
     <state x="482" y="187" key="SettingsEditor" timestamp="1578051402757">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
@@ -254,7 +448,11 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/gcnn_experiments$P4CNN.coverage" NAME="P4CNN Coverage Results" MODIFIED="1578147116375" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/models" />
     <SUITE FILE_PATH="coverage/gcnn_experiments$cnn.coverage" NAME="cnn Coverage Results" MODIFIED="1578146971073" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/models" />
-    <SUITE FILE_PATH="coverage/gcnn_experiments$train.coverage" NAME="train Coverage Results" MODIFIED="1578222895502" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+<<<<<<< Updated upstream
+    <SUITE FILE_PATH="coverage/gcnn_experiments$train.coverage" NAME="train Coverage Results" MODIFIED="1578387172703" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+=======
+    <SUITE FILE_PATH="coverage/gcnn_experiments$train.coverage" NAME="train Coverage Results" MODIFIED="1578335303932" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+>>>>>>> Stashed changes
     <SUITE FILE_PATH="coverage/gcnn_experiments$P4CNN_Chainer.coverage" NAME="P4CNN_Chainer Coverage Results" MODIFIED="1577733729096" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/models" />
     <SUITE FILE_PATH="coverage/gcnn_experiments$RiCNN.coverage" NAME="RiCNN Coverage Results" MODIFIED="1578147571203" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/models" />
     <SUITE FILE_PATH="coverage/gcnn_experiments$GCNN.coverage" NAME="GCNN Coverage Results" MODIFIED="1578160795447" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/models" />

@@ -1,6 +1,7 @@
 import tensorflow as tf
 import numpy as np
 import statics
+names = range(10)
 
 x=tf.placeholder(tf.float32, [None, 28,28])
 y=tf.placeholder(tf.float32, [None, len(names)])

@@ -1,2 +1,0 @@
-GCNN: Test accuracy 94.222, loss 1.5204278945922851
-RiCNN: Test accuracy 76.922, loss 1.6927758388519287
