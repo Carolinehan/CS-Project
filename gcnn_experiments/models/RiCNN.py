@@ -23,8 +23,9 @@ def r_e_layer(layer_order, previous_layer,output_size,n_filters_previous_layer, 
         [batch_size, output_size, output_size, n_filters_previous_layer],
         [filter_size, filter_size, n_filters_previous_layer, n_filters],
         n_rotations, stride=stride) + biases
-    output = tf.layers.batch_normalization(output)
-    output = tf.nn.relu(output)
+    if filter_size != 4:
+        output = tf.layers.batch_normalization(output)
+        output = tf.nn.relu(output)
     output_size = ricnn.calculate_reconv_output_size(
         output_size, filter_size, pool_stride=stride)
     n_filters_previous_layer = n_filters
@@ -48,13 +49,12 @@ def get_model(x, x_size, x_depth, y_size):
     output, output_size, n_filters_previous_layer = r_e_layer(2,output, output_size, n_filters_previous_layer)
     output = tf.nn.max_pool(output, [1, pool_stride, pool_stride, 1],
                                 [1, pool_stride, pool_stride, 1], padding='VALID')
-    output_size = output_size/2
+    output_size = int(output.shape[1])
     output, output_size, n_filters_previous_layer = r_e_layer(3,output, output_size, n_filters_previous_layer)
     output, output_size, n_filters_previous_layer = r_e_layer(4,output, output_size, n_filters_previous_layer)
     output, output_size, n_filters_previous_layer = r_e_layer(5,output, output_size, n_filters_previous_layer)
     output, output_size, n_filters_previous_layer = r_e_layer(6,output, output_size, n_filters_previous_layer, 4)
     output, output_size, n_filters_previous_layer = r_e_layer(7, output, output_size, n_filters_previous_layer, 4, 4)
-
     output_size = int(output.shape[1])
     output, dft_size = dft_layer(output, output_size, n_filters_previous_layer, 4)
     images_flat = tf.contrib.layers.flatten(output)

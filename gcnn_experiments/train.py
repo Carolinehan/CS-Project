@@ -8,6 +8,7 @@ import models.GCNN as GCNN
 import models.cnn as cnn
 import models.RiCNN as RiCNN
 import shutil
+import models.HNets as HNets
 
 VALID='VALID'
 best_model='models/best_model'
@@ -66,7 +67,7 @@ def plot(model, epochs, train_acc, val_acc):
     plt.close()
 
 
-def get_acc(sess, start, end, data, labels, x, y, accuracy, loss, train_op, pred_results, type, train=False):
+def get_acc(sess, start, end, data, labels, x, y, accuracy, loss, train_op, pred_results, type, train_phase, train=False):
     val_step=0
     loss_value = 0
     val_acc=0
@@ -80,7 +81,7 @@ def get_acc(sess, start, end, data, labels, x, y, accuracy, loss, train_op, pred
             continue
         input_batch = data[i:i + batch_size, :, :, :]
         labels_batch = labels[i:i + batch_size]
-        feed_dict = {x: input_batch, y: labels_batch}
+        feed_dict = {x: input_batch, y: labels_batch, train_phase:train}
         if train:
             sess.run(train_op, feed_dict=feed_dict)
         loss_percent =sess.run(loss, feed_dict=feed_dict)
@@ -102,6 +103,7 @@ def get_acc(sess, start, end, data, labels, x, y, accuracy, loss, train_op, pred
 
 def train(epochs, datadir, model):
     save_model= best_model
+
     if not os.path.exists(save_model):
         os.mkdir(save_model)
     if 'mnist' in datadir:
@@ -122,6 +124,7 @@ def train(epochs, datadir, model):
     with tf.Graph().as_default():
         x = tf.placeholder(tf.float32, shape=[None, x_size, x_size, x_depth], name='input')
         y = tf.placeholder(dtype=tf.int64, shape=[None])
+        train_phase = tf.compat.v1.placeholder(tf.bool, name='train_phase')
         if model == 'cnn':
             logits = cnn.get_model(x,x_depth, y_size)
             save_model = os.path.join(save_model, 'cnn')
@@ -131,6 +134,9 @@ def train(epochs, datadir, model):
         elif model == 'GCNN':
             logits = GCNN.get_model(x, x_depth, y_size)
             save_model = os.path.join(save_model, 'gcnn')
+        elif model == 'HNets':
+            logits = HNets.get_model(x,x_size, x_depth, y_size, train_phase)
+            save_model = os.path.join(save_model, 'hnets')
 
         if not os.path.exists(save_model):
             os.mkdir(save_model)
@@ -158,7 +164,7 @@ def train(epochs, datadir, model):
             elif 'cancer' in datadir:
                 start = 0
                 end = cancer_split
-            train_acc, train_loss,_ = get_acc(sess, start, end, train_data, train_labels, x, y, accuracy, loss, train_op, pred_results, 'Training', True)
+            train_acc, train_loss,_ = get_acc(sess, start, end, train_data, train_labels, x, y, accuracy, loss, train_op, pred_results, 'Training',train_phase, True)
             epoch_time = time.time() - epoch_start
             print('epoch %g training time %f s' % (epoch+1, epoch_time))
             train_accs[epoch] = train_acc
@@ -169,7 +175,7 @@ def train(epochs, datadir, model):
             elif 'cancer' in datadir:
                 start = cancer_split
                 end = len(val_data)
-            val_acc, val_loss,_ = get_acc(sess, start, end, val_data, val_labels, x, y, accuracy, loss, train_op,pred_results,'Validation')
+            val_acc, val_loss,_ = get_acc(sess, start, end, val_data, val_labels, x, y, accuracy, loss, train_op,pred_results,'Validation',train_phase)
             val_accs[epoch] = val_acc
             val_losses[epoch] = val_loss
             if val_acc > best_acc:
@@ -187,7 +193,7 @@ def train(epochs, datadir, model):
 
     ckpt = tf.train.get_checkpoint_state(save_model)
     saver.restore(sess, ckpt.all_model_checkpoint_paths[0])
-    test_acc, test_loss, pred = get_acc(sess, start, end,test_data, test_labels, x, y, accuracy, loss, train_op,pred_results,'Test')
+    test_acc, test_loss, pred = get_acc(sess, start, end,test_data, test_labels, x, y, accuracy, loss, train_op,pred_results,'Test', train_phase)
     total_time=time.time()-total_start_time
     print('Total time: %fs' %total_time)
     save_results(train_accs, train_losses, val_accs, val_losses,datadir)
@@ -208,10 +214,11 @@ if __name__ == '__main__':
     # train(**vars(args))
     # train(100, 'mnist-rot', 'RiCNN')
 
-    train(100, 'mnist-rot', 'RiCNN')
-    train(100, 'mnist-rot', 'GCNN')
-    train(100, 'mnist-rot', 'cnn')
-    train(100, 'oral-cancer', 'RiCNN')
-    train(100, 'oral-cancer', 'GCNN')
-    train(100, 'oral-cancer', 'cnn')
+     train(100, 'mnist-rot', 'RiCNN')
+    # train(100, 'mnist-rot', 'GCNN')
+    # train(100, 'mnist-rot', 'cnn')
+    # train(100, 'oral-cancer', 'HNets')
+    # train(100, 'oral-cancer', 'RiCNN')
+    # train(100, 'oral-cancer', 'GCNN')
+    # train(100, 'oral-cancer', 'cnn')
 

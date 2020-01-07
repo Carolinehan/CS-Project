@@ -14,11 +14,10 @@ def build_layer(filter_depth, layer_order, previous_layer, filter_size=default_f
     biases = tf.get_variable('biases-conv'+str(layer_order), [weight_size])
     output = tf.nn.conv2d(previous_layer, weights, strides=[1, 1, 1, 1], padding=VALID, use_cudnn_on_gpu=True, data_format='NHWC')
     output = tf.nn.bias_add(output, biases)
-    output = tf.layers.batch_normalization(output)
-    if activation == 'relu':
+    if filter_size != 4:
+        output = tf.layers.batch_normalization(output)
         output = tf.nn.relu(output)
-    elif activation == 'softmax':
-        output = tf.nn.softmax(output)
+
     return output
 
 def get_model(x,x_depth, y_size):
