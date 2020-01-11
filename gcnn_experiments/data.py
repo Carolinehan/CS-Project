@@ -24,11 +24,11 @@ def preprocess_mnist_data(train_data, test_data, train_labels, test_labels):
     return train_data, test_data, train_labels, test_labels
 
 def normalise_data(data):
-    mean = np.mean(data)
-    data -= mean
-    std = np.std(data)
-    data /= std
+    # mean = np.mean(data)
+    # data -= mean
+    # std = np.std(data)
     data = data.astype(np.float32)
+    data /= 255
     return data
 
 def read_minst_data(file_name, datadir, x_size, x_depth):
@@ -56,14 +56,17 @@ def split_data(data, label, interval):
 
 def get_minist_data(datadir, x_size, x_depth):
     train_data, train_labels = read_minst_data(trainfn, datadir, x_size, x_depth)
-    interval = 10000
-    train_data, train_labels, val_data, val_labels = split_data(train_data, train_labels, interval)
+    val_data, val_labels = read_minst_data(valfn, datadir, x_size, x_depth)
+    # interval = 10000
+    # train_data, train_labels, val_data, val_labels = split_data(train_data, train_labels, interval)
     train_data, val_data, train_labels, val_labels = preprocess_mnist_data(
         train_data, val_data, train_labels, val_labels)
     return train_data,train_labels, val_data, val_labels
 
 
 def get_test_data(datadir, x_size, x_depth):
+    train_data, train_labels = read_minst_data(trainfn, datadir, x_size, x_depth)
     test_data, test_labels = read_minst_data(testfn, datadir, x_size, x_depth)
-    test_data= normalise_data(test_data)
+    _, test_data, _, test_labels = preprocess_mnist_data(
+        train_data, test_data, train_labels, test_labels)
     return test_data, test_labels
