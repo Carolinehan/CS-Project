@@ -239,6 +239,6 @@ if __name__ == '__main__':
     # train(100, 'oral-cancer', 'RiCNN')
     # train(100, 'oral-cancer', 'GCNN')
     # train(100, 'oral-cancer', 'cnn')
-    train(50, 'oral-cancer', 'HNets')
+   # train(50, 'oral-cancer', 'HNets')
     train(100, 'oral-cancer', 'HNets')
 
