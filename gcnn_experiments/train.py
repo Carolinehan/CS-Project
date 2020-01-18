@@ -54,7 +54,7 @@ def plot(model, epochs, train_acc, val_acc):
     plt.plot(epochs, train_acc, 'k', label='Training accuracy')
     plt.plot(epochs, val_acc, 'r', label='Validation accuracy')
     plt.ylim(0, 1.1)
-    plt.title('Traing and validation accuracy')
+    plt.title('Training and validation accuracy')
     plt.xlabel = 'Epochs'
     plt.ylabel = 'Accuracy'
     plt.legend()
@@ -67,7 +67,7 @@ def plot(model, epochs, train_acc, val_acc):
     plt.close()
 
 
-def get_acc(sess, start, end, data, labels, x, y, accuracy, loss, train_op, pred_results, type, train_phase, train=False):
+def get_acc(sess, start, end, data, labels, x, y, accuracy, loss, train_op, pred_results, type, train_phase,learning_rate,lr,model, train=False):
     val_step=0
     loss_value = 0
     val_acc=0
@@ -77,13 +77,17 @@ def get_acc(sess, start, end, data, labels, x, y, accuracy, loss, train_op, pred
     for i in range(start, end, batch_size):
         batch_start = time.time()
         # Get the next batch
-        if i+batch_size > end:
-            continue
+        if model == 'RiCNN' or model == 'HNets':
+            if i+batch_size > end:
+                continue
         input_batch = data[i:i + batch_size, :, :, :]
         labels_batch = labels[i:i + batch_size]
-        feed_dict = {x: input_batch, y: labels_batch, train_phase:train}
+
         if train:
+            feed_dict = {x: input_batch, y: labels_batch, train_phase: train, learning_rate:lr}
             sess.run(train_op, feed_dict=feed_dict)
+        else:
+            feed_dict = {x: input_batch, y: labels_batch, train_phase: train}
         loss_percent =sess.run(loss, feed_dict=feed_dict)
         train_accuracy =sess.run(accuracy, feed_dict=feed_dict)
         if type == 'Test':
@@ -103,7 +107,7 @@ def get_acc(sess, start, end, data, labels, x, y, accuracy, loss, train_op, pred
 
 def train(epochs, datadir, model):
     save_model= best_model
-
+    lr =  0.0076
     if not os.path.exists(save_model):
         os.mkdir(save_model)
     if 'mnist' in datadir:
@@ -125,14 +129,17 @@ def train(epochs, datadir, model):
         x = tf.placeholder(tf.float32, shape=[None, x_size, x_size, x_depth], name='input')
         y = tf.placeholder(dtype=tf.int64, shape=[None])
         train_phase = tf.compat.v1.placeholder(tf.bool, name='train_phase')
+        learning_rate = tf.compat.v1.placeholder(tf.float32, name='learning_rate')
+
         if model == 'cnn':
-            logits = cnn.get_model(x,x_depth, y_size)
+            logits = cnn.get_model(x,x_depth, y_size, train_phase)
             save_model = os.path.join(save_model, 'cnn')
         elif model == 'RiCNN':
-             logits = RiCNN.get_model(x,x_size, x_depth, y_size)
+
+             logits = RiCNN.get_model(x,x_size, x_depth, y_size, train_phase)
              save_model = os.path.join(save_model, 'ricnn')
         elif model == 'GCNN':
-            logits = GCNN.get_model(x, x_depth, y_size)
+            logits = GCNN.get_model(x, x_depth, y_size, train_phase)
             save_model = os.path.join(save_model, 'gcnn')
         elif model == 'HNets':
             logits = HNets.get_model(x,x_size, x_depth, y_size, train_phase)
@@ -141,14 +148,23 @@ def train(epochs, datadir, model):
         if not os.path.exists(save_model):
             os.mkdir(save_model)
         loss = tf.reduce_mean(tf.nn.sparse_softmax_cross_entropy_with_logits(logits=logits, labels=y))
-        train_op = tf.train.AdamOptimizer(learning_rate=0.001).minimize(loss)
+        optim = tf.train.AdamOptimizer(learning_rate=learning_rate)
+        grads_and_vars = optim.compute_gradients(loss)
+        modified_gvs = []
+        # We precondition the phases, for faster descent, in the same way as biases
+        for g, v in grads_and_vars:
+            if 'psi' in v.name:
+                g = 7.8 * g
+            modified_gvs.append((g, v))
+        train_op = optim.apply_gradients(modified_gvs)
         correct_prediction = tf.equal(y, tf.argmax(logits, 1))
         pred_results = tf.argmax(logits,1)
         accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
         saver = tf.train.Saver()
         best_acc = 0
         sess = tf.InteractiveSession()
-        sess.run(tf.global_variables_initializer())
+
+        sess.run([tf.global_variables_initializer(), tf.local_variables_initializer()], feed_dict={train_phase: True})
         total_start_time = time.time()
         train_accs=np.zeros(epochs)
         val_accs = np.zeros(epochs)
@@ -164,7 +180,7 @@ def train(epochs, datadir, model):
             elif 'cancer' in datadir:
                 start = 0
                 end = cancer_split
-            train_acc, train_loss,_ = get_acc(sess, start, end, train_data, train_labels, x, y, accuracy, loss, train_op, pred_results, 'Training',train_phase, True)
+            train_acc, train_loss,_ = get_acc(sess, start, end, train_data, train_labels, x, y, accuracy, loss, train_op, pred_results, 'Training',train_phase,learning_rate,lr, model, True)
             epoch_time = time.time() - epoch_start
             print('epoch %g training time %f s' % (epoch+1, epoch_time))
             train_accs[epoch] = train_acc
@@ -175,7 +191,7 @@ def train(epochs, datadir, model):
             elif 'cancer' in datadir:
                 start = cancer_split
                 end = len(val_data)
-            val_acc, val_loss,_ = get_acc(sess, start, end, val_data, val_labels, x, y, accuracy, loss, train_op,pred_results,'Validation',train_phase)
+            val_acc, val_loss,_ = get_acc(sess, start, end, val_data, val_labels, x, y, accuracy, loss, train_op,pred_results,'Validation',train_phase,learning_rate,lr, model)
             val_accs[epoch] = val_acc
             val_losses[epoch] = val_loss
             if val_acc > best_acc:
@@ -184,6 +200,7 @@ def train(epochs, datadir, model):
                     shutil.rmtree(save_model)
                 os.mkdir(save_model)
                 saver.save(sess, saved_model_path)
+            lr = lr * np.power(0.1, epoch / 50)
     if 'mnist' in datadir:
         test_data, test_labels = data.get_test_data(datadir, x_size, x_depth)
     elif 'cancer' in datadir:
@@ -193,7 +210,7 @@ def train(epochs, datadir, model):
 
     ckpt = tf.train.get_checkpoint_state(save_model)
     saver.restore(sess, ckpt.all_model_checkpoint_paths[0])
-    test_acc, test_loss, pred = get_acc(sess, start, end,test_data, test_labels, x, y, accuracy, loss, train_op,pred_results,'Test', train_phase)
+    test_acc, test_loss, pred = get_acc(sess, start, end,test_data, test_labels, x, y, accuracy, loss, train_op,pred_results,'Test', train_phase,learning_rate,lr, model)
     total_time=time.time()-total_start_time
     print('Total time: %fs' %total_time)
     save_results(train_accs, train_losses, val_accs, val_losses,datadir)
@@ -214,11 +231,14 @@ if __name__ == '__main__':
     # train(**vars(args))
     # train(100, 'mnist-rot', 'RiCNN')
 
-     train(100, 'mnist-rot', 'RiCNN')
-    # train(100, 'mnist-rot', 'GCNN')
+    # train(100, 'mnist-rot', 'RiCNN')
     # train(100, 'mnist-rot', 'cnn')
-    # train(100, 'oral-cancer', 'HNets')
+    # train(100, 'mnist-rot', 'GCNN')
+    # train(100, 'mnist-rot', 'HNets')
+    #
     # train(100, 'oral-cancer', 'RiCNN')
     # train(100, 'oral-cancer', 'GCNN')
     # train(100, 'oral-cancer', 'cnn')
+    train(50, 'oral-cancer', 'HNets')
+    train(100, 'oral-cancer', 'HNets')
 
