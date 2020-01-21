@@ -32,7 +32,10 @@ def get_model(x,x_depth, y_size, train_phase):
     l6 = build_layer(l5.shape[-1],6,l5, train_phase)
     l7 = build_layer(l6.shape[-1], 7, l6, train_phase, 4)
     images_flat = tf.contrib.layers.flatten(l7)
-    l7 = tf.contrib.layers.fully_connected(images_flat, y_size, tf.nn.softmax)
+    w_shape = (int(images_flat.shape[-1]), y_size)
+    weights = tf.get_variable('weights-full', w_shape)
+    biases = tf.get_variable('biases-full', [y_size])
+    l7 = tf.matmul(images_flat, weights) + biases
     return l7
 
 

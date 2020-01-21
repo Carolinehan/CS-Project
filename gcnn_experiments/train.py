@@ -15,7 +15,7 @@ best_model='models/best_model'
 results_fold='results'
 batch_size = 100
 import data
-cancer_split=60000
+cancer_split=50000
 
 def save_results(train_acc, train_loss, val_acc, val_loss, datadir):
     # if args.restart_from is None:
@@ -66,6 +66,21 @@ def plot(model, epochs, train_acc, val_acc):
     plt.savefig(result_path)
     plt.close()
 
+def get_learning_rate(current, best, counter, learning_rate):
+   """If have not seen accuracy improvement in delay epochs, then divide
+   learning rate by 10
+   """
+   delay = 12
+   lr_div =10.
+   if current > best:
+      best = current
+      counter = 0
+   elif counter > delay:
+      learning_rate = learning_rate / lr_div
+      counter = 0
+   else:
+      counter += 1
+   return (best, counter, learning_rate)
 
 def get_acc(sess, start, end, data, labels, x, y, accuracy, loss, train_op, pred_results, type, train_phase,learning_rate,lr,model, train=False):
     val_step=0
@@ -107,7 +122,8 @@ def get_acc(sess, start, end, data, labels, x, y, accuracy, loss, train_op, pred
 
 def train(epochs, datadir, model):
     save_model= best_model
-    lr =  0.0076
+    lr =  0.001
+    counter =0
     if not os.path.exists(save_model):
         os.mkdir(save_model)
     if 'mnist' in datadir:
@@ -147,6 +163,7 @@ def train(epochs, datadir, model):
 
         if not os.path.exists(save_model):
             os.mkdir(save_model)
+
         loss = tf.reduce_mean(tf.nn.sparse_softmax_cross_entropy_with_logits(logits=logits, labels=y))
         optim = tf.train.AdamOptimizer(learning_rate=learning_rate)
         grads_and_vars = optim.compute_gradients(loss)
@@ -194,30 +211,34 @@ def train(epochs, datadir, model):
             val_acc, val_loss,_ = get_acc(sess, start, end, val_data, val_labels, x, y, accuracy, loss, train_op,pred_results,'Validation',train_phase,learning_rate,lr, model)
             val_accs[epoch] = val_acc
             val_losses[epoch] = val_loss
+
+            best, counter, lr = get_learning_rate(val_acc, best_acc, counter, lr)
+
             if val_acc > best_acc:
                 best_acc = val_acc
                 if os.path.exists(save_model):
                     shutil.rmtree(save_model)
                 os.mkdir(save_model)
                 saver.save(sess, saved_model_path)
-            lr = lr * np.power(0.1, epoch / 50)
-    if 'mnist' in datadir:
-        test_data, test_labels = data.get_test_data(datadir, x_size, x_depth)
-    elif 'cancer' in datadir:
-        test_data, test_labels =data.read_cancer_data('test', datadir)
-    start = 0
-    end = len(test_data)
 
-    ckpt = tf.train.get_checkpoint_state(save_model)
-    saver.restore(sess, ckpt.all_model_checkpoint_paths[0])
-    test_acc, test_loss, pred = get_acc(sess, start, end,test_data, test_labels, x, y, accuracy, loss, train_op,pred_results,'Test', train_phase,learning_rate,lr, model)
-    total_time=time.time()-total_start_time
-    print('Total time: %fs' %total_time)
-    save_results(train_accs, train_losses, val_accs, val_losses,datadir)
-    plot(model, range(epochs), train_accs, val_accs)
+        if 'mnist' in datadir:
+            test_data, test_labels = data.get_test_data(datadir, x_size, x_depth)
+        elif 'cancer' in datadir:
+            test_data, test_labels =data.read_cancer_data('test', datadir)
+        start = 0
+        end = len(test_data)
 
-    save_pred_results(pred, os.path.join(results_fold, model))
-    save_test_results("Test accuracy %g%%, loss %s datadir %s" % (test_acc * 100, test_loss, datadir), os.path.join(results_fold, model))
+        ckpt = tf.train.get_checkpoint_state(save_model)
+        saver.restore(sess, ckpt.all_model_checkpoint_paths[0])
+        test_acc, test_loss, pred = get_acc(sess, start, end,test_data, test_labels, x, y, accuracy, loss, train_op,pred_results,'Test', train_phase,learning_rate,lr, model)
+        total_time=time.time()-total_start_time
+        print('Total time: %fs' %total_time)
+        save_results(train_accs, train_losses, val_accs, val_losses,datadir)
+        plot(model, range(epochs), train_accs, val_accs)
+
+        save_pred_results(pred, os.path.join(results_fold, model))
+        save_test_results("Test accuracy %g%%, loss %s datadir %s  total time %f" % (test_acc * 100, test_loss, datadir, total_time), os.path.join(results_fold, model))
+        sess.close()
 
 if __name__ == '__main__':
 
@@ -230,16 +251,16 @@ if __name__ == '__main__':
     # args = parser.parse_args()
     # train(**vars(args))
     # train(100, 'mnist-rot', 'RiCNN')
-    train_epoch = 10
-    # train(train_epoch, 'mnist-rot', 'RiCNN')
-    # train(train_epoch, 'mnist-rot', 'cnn')
+    train_epoch = 100
+    train(train_epoch, 'mnist-rot', 'RiCNN')
+    train(train_epoch, 'mnist-rot', 'cnn')
     train(train_epoch, 'mnist-rot', 'GCNN')
-    # train(train_epoch, 'mnist-rot', 'HNets')
+    train(train_epoch, 'mnist-rot', 'HNets')
     #
-    train_epoch = 30
-    train(train_epoch, 'oral-cancer', 'RiCNN')
+    train_epoch = 100
     train(train_epoch, 'oral-cancer', 'GCNN')
+    train(train_epoch, 'oral-cancer', 'RiCNN')
     train(train_epoch, 'oral-cancer', 'cnn')
-    # train(50, 'oral-cancer', 'HNets')
+    train(train_epoch, 'oral-cancer', 'HNets')
     # train(100, 'oral-cancer', 'HNets')
 

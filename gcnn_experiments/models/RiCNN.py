@@ -6,11 +6,11 @@ VALID='VALID'
 
 batch_size = 100
 default_filter_size = 3
-n_filters = 7
+n_filters = 15
 rotations = 8
 stride = 1
 pool_stride = 2
-dft_n_filters=20
+dft_n_filters=15
 
 def r_e_layer(layer_order, previous_layer,output_size,n_filters_previous_layer, train_phase, n_rotations=rotations, filter_size=default_filter_size):
     weights = tf.get_variable('weights-conv'+str(layer_order), [filter_size, filter_size,
@@ -42,17 +42,17 @@ def dft_layer(previous_layer,output_size,n_filters_previous_layer, n_rotations=r
     return output, dft_size
 
 def get_model(x, x_size, x_depth, y_size, train_phase):
-    output, output_size, n_filters_previous_layer = r_e_layer(1,x, x_size,x_depth, train_phase)
-    output, output_size, n_filters_previous_layer = r_e_layer(2,output, output_size, n_filters_previous_layer, train_phase)
+    output, output_size, n_filters_previous_layer = r_e_layer(1,x, x_size,x_depth, train_phase,8)
+    output, output_size, n_filters_previous_layer = r_e_layer(2,output, output_size, n_filters_previous_layer, train_phase,8)
     output = tf.nn.max_pool(output, [1, pool_stride, pool_stride, 1],
                                 [1, pool_stride, pool_stride, 1], padding='VALID')
     output_size = int(output.shape[1])
-    output, output_size, n_filters_previous_layer = r_e_layer(3,output, output_size, n_filters_previous_layer, train_phase)
-    output, output_size, n_filters_previous_layer = r_e_layer(4,output, output_size, n_filters_previous_layer, train_phase)
-    output, output_size, n_filters_previous_layer = r_e_layer(5,output, output_size, n_filters_previous_layer, train_phase)
+    output, output_size, n_filters_previous_layer = r_e_layer(3,output, output_size, n_filters_previous_layer, train_phase,8)
+    output, output_size, n_filters_previous_layer = r_e_layer(4,output, output_size, n_filters_previous_layer, train_phase,4)
+    output, output_size, n_filters_previous_layer = r_e_layer(5,output, output_size, n_filters_previous_layer, train_phase,4)
     output, output_size, n_filters_previous_layer = r_e_layer(6,output, output_size, n_filters_previous_layer, train_phase, 4)
-    output, output_size, n_filters_previous_layer = r_e_layer(7, output, output_size, n_filters_previous_layer, train_phase, 4)
-    output_size = int(output.shape[1])
+    # output, output_size, n_filters_previous_layer = r_e_layer(7, output, output_size, n_filters_previous_layer, train_phase, 4,4)
+
     output, dft_size = dft_layer(output, output_size, n_filters_previous_layer, 4)
     n_nodes = y_size
     weights = tf.get_variable('weights-full', [dft_size, n_nodes])
