@@ -122,12 +122,8 @@ def get_acc(sess, start, end, data, labels, x, y, accuracy, loss, train_op, pred
 
 def train(epochs, datadir, model):
     save_model= best_model
-<<<<<<< HEAD
     lr =  0.001
     counter =0
-=======
-    lr =  0.0076
->>>>>>> 32d1be7b2d56ae3596fe1ab88af1518cd4623bb9
     if not os.path.exists(save_model):
         os.mkdir(save_model)
     if 'mnist' in datadir:
@@ -224,7 +220,6 @@ def train(epochs, datadir, model):
                     shutil.rmtree(save_model)
                 os.mkdir(save_model)
                 saver.save(sess, saved_model_path)
-<<<<<<< HEAD
 
         if 'mnist' in datadir:
             test_data, test_labels = data.get_test_data(datadir, x_size, x_depth)
@@ -232,23 +227,6 @@ def train(epochs, datadir, model):
             test_data, test_labels =data.read_cancer_data('test', datadir)
         start = 0
         end = len(test_data)
-=======
-            lr = lr * np.power(0.1, epoch / 50)
-    if 'mnist' in datadir:
-        test_data, test_labels = data.get_test_data(datadir, x_size, x_depth)
-    elif 'cancer' in datadir:
-        test_data, test_labels =data.read_cancer_data('test', datadir)
-    start = 0
-    end = len(test_data)
-
-    ckpt = tf.train.get_checkpoint_state(save_model)
-    saver.restore(sess, ckpt.all_model_checkpoint_paths[0])
-    test_acc, test_loss, pred = get_acc(sess, start, end,test_data, test_labels, x, y, accuracy, loss, train_op,pred_results,'Test', train_phase,learning_rate,lr, model)
-    total_time=time.time()-total_start_time
-    print('Total time: %fs' %total_time)
-    save_results(train_accs, train_losses, val_accs, val_losses,datadir)
-    plot(model, range(epochs), train_accs, val_accs)
->>>>>>> 32d1be7b2d56ae3596fe1ab88af1518cd4623bb9
 
         ckpt = tf.train.get_checkpoint_state(save_model)
         saver.restore(sess, ckpt.all_model_checkpoint_paths[0])
@@ -273,7 +251,6 @@ if __name__ == '__main__':
     # args = parser.parse_args()
     # train(**vars(args))
     # train(100, 'mnist-rot', 'RiCNN')
-<<<<<<< HEAD
     train_epoch = 100
     train(train_epoch, 'mnist-rot', 'RiCNN')
     train(train_epoch, 'mnist-rot', 'cnn')
@@ -286,17 +263,4 @@ if __name__ == '__main__':
     train(train_epoch, 'oral-cancer', 'cnn')
     train(train_epoch, 'oral-cancer', 'HNets')
     # train(100, 'oral-cancer', 'HNets')
-=======
-
-    # train(100, 'mnist-rot', 'RiCNN')
-    # train(100, 'mnist-rot', 'cnn')
-    # train(100, 'mnist-rot', 'GCNN')
-    # train(100, 'mnist-rot', 'HNets')
-    #
-    # train(100, 'oral-cancer', 'RiCNN')
-    # train(100, 'oral-cancer', 'GCNN')
-    # train(100, 'oral-cancer', 'cnn')
-   # train(50, 'oral-cancer', 'HNets')
-    train(100, 'oral-cancer', 'HNets')
->>>>>>> 32d1be7b2d56ae3596fe1ab88af1518cd4623bb9
 

@@ -148,13 +148,18 @@ def read_npy(output):
     labels = np.load(output_file_label, mmap_mode='r')
     return data, labels
 
-def normalize(data, eps=1e-8):
-    mean = data.mean(axis=(1, 2, 3), keepdims=True)
+def normalize(data, mean, std):
+    data = data.astype(np.float32)
     data -=mean
-    std = np.sqrt(data.var(axis=(1, 2, 3), ddof=1, keepdims=True))
-    std[std < eps] = 1.
     data /= std
     return data
+
+def get_mean_std(data, eps=1e-8):
+    mean = data.mean(axis=(1, 2, 3), keepdims=True)
+    std = np.sqrt(data.var(axis=(1, 2, 3), ddof=1, keepdims=True))
+    std[std < eps] = 1.
+    return mean, std
+
 
 def white(train_data_all, test_data):
 
@@ -208,21 +213,23 @@ test_fold=os.path.join(cur_dir, extract_folder, 'test')
 train_no=73303
 test_no=55514
 train_data, train_label= read_images(train_fold, train_no)
-train_data = normalize(train_data)
 train_data, train_label= shuffle(train_data, train_label, random_state=0)
-# save_npy('train', train_data, train_label)
+mean, std = get_mean_std(train_data)
+train_data = normalize(train_data, mean, std)
+save_npy('train', train_data, train_label)
 print('Done with saving training data')
 # save_npz('train', train_data, train_label)
 # # save_h5py('train', train_data, train_label)
 test_data, test_label= read_images(test_fold, test_no)
-test_data = normalize(test_data)
 test_data, test_label= shuffle(test_data, test_label, random_state=0)
+test_data = normalize(test_data, mean, std)
 
-train_data, test_data = white(train_data, test_data)
-print('done with whiten')
+
+# train_data, test_data = white(train_data, test_data)
+# print('done with whiten')
 # # save_h5py('test', test_data, test_label)
 # save_npz('test', test_data, test_label)
-save_npy('train', train_data, train_label)
+# save_npy('train', train_data, train_label)
 save_npy('test', test_data, test_label)
 print('Done with saving testing data')
 # large_data_shuffle()
