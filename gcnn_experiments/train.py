@@ -120,7 +120,7 @@ def get_acc(sess, start, end, data, labels, x, y, accuracy, loss, train_op, pred
     print("%s accuracy %g%%, loss %s" % (type, acc * 100, loss_value))
     return acc, loss_value, pred_all
 
-def train(epochs, datadir, model):
+def train(epochs, datadir, model, shuffle=False):
     save_model= best_model
     lr =  0.001
     counter =0
@@ -251,16 +251,16 @@ if __name__ == '__main__':
     # args = parser.parse_args()
     # train(**vars(args))
     # train(100, 'mnist-rot', 'RiCNN')
-    train_epoch = 100
-    train(train_epoch, 'mnist-rot', 'RiCNN')
-    train(train_epoch, 'mnist-rot', 'cnn')
-    train(train_epoch, 'mnist-rot', 'GCNN')
-    train(train_epoch, 'mnist-rot', 'HNets')
+    # train_epoch = 100
+    # # train(train_epoch, 'mnist-rot', 'RiCNN')
+    # train(train_epoch, 'mnist-rot', 'cnn')
+    # # train(train_epoch, 'mnist-rot', 'GCNN')
+    # train(train_epoch, 'mnist-rot', 'HNets')
     #
     train_epoch = 100
-    train(train_epoch, 'oral-cancer', 'GCNN')
-    train(train_epoch, 'oral-cancer', 'RiCNN')
-    train(train_epoch, 'oral-cancer', 'cnn')
+    # train(train_epoch, 'oral-cancer', 'GCNN')
+    # train(train_epoch, 'oral-cancer', 'RiCNN')
+    # train(train_epoch, 'oral-cancer', 'cnn')
     train(train_epoch, 'oral-cancer', 'HNets')
     # train(100, 'oral-cancer', 'HNets')
 
