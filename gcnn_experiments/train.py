@@ -15,7 +15,7 @@ best_model='models/best_model'
 results_fold='results'
 batch_size = 100
 import data
-cancer_split=50000
+
 
 def save_results(train_acc, train_loss, val_acc, val_loss, datadir):
     # if args.restart_from is None:
@@ -120,7 +120,7 @@ def get_acc(sess, start, end, data, labels, x, y, accuracy, loss, train_op, pred
     print("%s accuracy %g%%, loss %s" % (type, acc * 100, loss_value))
     return acc, loss_value, pred_all
 
-def train(epochs, datadir, model, shuffle=False):
+def train(epochs, datadir, model, cancer_split=50000, shuffle=False):
     save_model= best_model
     lr =  0.001
     counter =0
@@ -139,6 +139,8 @@ def train(epochs, datadir, model, shuffle=False):
         train_data,train_labels = data.read_cancer_data('train', datadir)
         val_data, val_labels = train_data,train_labels
         save_model = os.path.join(save_model, 'cancer')
+        if shuffle:
+            save_model = os.path.join(save_model, 'cancer_shuffle')
     if not os.path.exists(save_model):
         os.mkdir(save_model)
     with tf.Graph().as_default():
@@ -179,6 +181,7 @@ def train(epochs, datadir, model, shuffle=False):
         accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
         saver = tf.train.Saver()
         best_acc = 0
+        best_epoch = 0
         sess = tf.InteractiveSession()
 
         sess.run([tf.global_variables_initializer(), tf.local_variables_initializer()], feed_dict={train_phase: True})
@@ -188,6 +191,7 @@ def train(epochs, datadir, model, shuffle=False):
         train_losses = np.zeros(epochs)
         val_losses = np.zeros(epochs)
         saved_model_path = os.path.join(save_model, 'best.ckpt')
+
         for epoch in range(epochs):
             print('start training epoch %g' % (epoch+1))
             epoch_start=time.time()
@@ -216,10 +220,14 @@ def train(epochs, datadir, model, shuffle=False):
 
             if val_acc > best_acc:
                 best_acc = val_acc
+                best_epoch = epoch
                 if os.path.exists(save_model):
                     shutil.rmtree(save_model)
                 os.mkdir(save_model)
                 saver.save(sess, saved_model_path)
+            if epoch - best_epoch > 15:
+                print('Validation is not improved in 15 epochs, exit training')
+                break
 
         if 'mnist' in datadir:
             test_data, test_labels = data.get_test_data(datadir, x_size, x_depth)
@@ -257,10 +265,37 @@ if __name__ == '__main__':
     # # train(train_epoch, 'mnist-rot', 'GCNN')
     # train(train_epoch, 'mnist-rot', 'HNets')
     #
+
     train_epoch = 100
     # train(train_epoch, 'oral-cancer', 'GCNN')
     # train(train_epoch, 'oral-cancer', 'RiCNN')
     # train(train_epoch, 'oral-cancer', 'cnn')
-    train(train_epoch, 'oral-cancer', 'HNets')
-    # train(100, 'oral-cancer', 'HNets')
 
+    # train(100, 'oral-cancer', 'HNets')
+    cancer_split = 10000
+    train(train_epoch, 'oral-cancer', 'GCNN', cancer_split)
+    cancer_split = 30000
+    train(train_epoch, 'oral-cancer', 'GCNN', cancer_split)
+    cancer_split = 50000
+    train(train_epoch, 'oral-cancer', 'GCNN', cancer_split)
+
+    cancer_split = 10000
+    train(train_epoch, 'oral-cancer', 'GCNN', cancer_split, True)
+    cancer_split = 30000
+    train(train_epoch, 'oral-cancer', 'GCNN', cancer_split, True)
+    cancer_split = 50000
+    train(train_epoch, 'oral-cancer', 'GCNN', cancer_split, True)
+
+    cancer_split = 10000
+    train(train_epoch, 'oral-cancer', 'cnn', cancer_split)
+    cancer_split = 30000
+    train(train_epoch, 'oral-cancer', 'cnn', cancer_split)
+    cancer_split = 50000
+    train(train_epoch, 'oral-cancer', 'cnn', cancer_split)
+
+    cancer_split = 10000
+    train(train_epoch, 'oral-cancer', 'cnn', cancer_split, True)
+    cancer_split = 30000
+    train(train_epoch, 'oral-cancer', 'cnn', cancer_split, True)
+    cancer_split = 50000
+    train(train_epoch, 'oral-cancer', 'cnn', cancer_split, True)
