@@ -259,10 +259,10 @@ if __name__ == '__main__':
     # args = parser.parse_args()
     # train(**vars(args))
     # train(100, 'mnist-rot', 'RiCNN')
-    # train_epoch = 100
+    train_epoch = 100
     # # train(train_epoch, 'mnist-rot', 'RiCNN')
     # train(train_epoch, 'mnist-rot', 'cnn')
-    # # train(train_epoch, 'mnist-rot', 'GCNN')
+    train(train_epoch, 'mnist-rot', 'GCNN')
     # train(train_epoch, 'mnist-rot', 'HNets')
     #
 
@@ -272,30 +272,30 @@ if __name__ == '__main__':
     # train(train_epoch, 'oral-cancer', 'cnn')
 
     # train(100, 'oral-cancer', 'HNets')
-    cancer_split = 10000
-    train(train_epoch, 'oral-cancer', 'GCNN', cancer_split)
-    cancer_split = 30000
-    train(train_epoch, 'oral-cancer', 'GCNN', cancer_split)
-    cancer_split = 50000
-    train(train_epoch, 'oral-cancer', 'GCNN', cancer_split)
-
-    cancer_split = 10000
-    train(train_epoch, 'oral-cancer', 'GCNN', cancer_split, True)
-    cancer_split = 30000
-    train(train_epoch, 'oral-cancer', 'GCNN', cancer_split, True)
-    cancer_split = 50000
-    train(train_epoch, 'oral-cancer', 'GCNN', cancer_split, True)
-
-    cancer_split = 10000
-    train(train_epoch, 'oral-cancer', 'cnn', cancer_split)
-    cancer_split = 30000
-    train(train_epoch, 'oral-cancer', 'cnn', cancer_split)
-    cancer_split = 50000
-    train(train_epoch, 'oral-cancer', 'cnn', cancer_split)
-
-    cancer_split = 10000
-    train(train_epoch, 'oral-cancer', 'cnn', cancer_split, True)
-    cancer_split = 30000
-    train(train_epoch, 'oral-cancer', 'cnn', cancer_split, True)
-    cancer_split = 50000
-    train(train_epoch, 'oral-cancer', 'cnn', cancer_split, True)
+    # cancer_split = 10000
+    # train(train_epoch, 'oral-cancer', 'GCNN', cancer_split)
+    # cancer_split = 30000
+    # train(train_epoch, 'oral-cancer', 'GCNN', cancer_split)
+    # cancer_split = 50000
+    # train(train_epoch, 'oral-cancer', 'GCNN', cancer_split)
+    #
+    # cancer_split = 10000
+    # train(train_epoch, 'oral-cancer', 'GCNN', cancer_split, True)
+    # cancer_split = 30000
+    # train(train_epoch, 'oral-cancer', 'GCNN', cancer_split, True)
+    # cancer_split = 50000
+    # train(train_epoch, 'oral-cancer', 'GCNN', cancer_split, True)
+    #
+    # cancer_split = 10000
+    # train(train_epoch, 'oral-cancer', 'cnn', cancer_split)
+    # cancer_split = 30000
+    # train(train_epoch, 'oral-cancer', 'cnn', cancer_split)
+    # cancer_split = 50000
+    # train(train_epoch, 'oral-cancer', 'cnn', cancer_split)
+    #
+    # cancer_split = 10000
+    # train(train_epoch, 'oral-cancer', 'cnn', cancer_split, True)
+    # cancer_split = 30000
+    # train(train_epoch, 'oral-cancer', 'cnn', cancer_split, True)
+    # cancer_split = 50000
+    # train(train_epoch, 'oral-cancer', 'cnn', cancer_split, True)
